@@ -1,0 +1,165 @@
+<!-- grapevinified -->
+
+<!-- INCLUDE overall_header.html -->
+
+<form action="{S_SEARCH_ACTION}" method="get">
+	<input type="hidden" name="c" value="1" />
+	<table cellspacing="0" id="search_form">
+		<thead>
+			<tr>
+				<th colspan='2'>Search Posts</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>Search Terms:</td>
+			<td>
+				<input type="search" class="inputbox" name="keywords" id="keywords" size="40" />
+			</td>
+		</tr>
+		<tr>
+			<td>Search Type:</td>
+			<td>
+				<input type="radio" name="sf" id="sf1" value="all" checked="checked" /> Search Posts
+				<br />
+				<input type="radio" name="sf" id="sf3" value="titleonly" /> Search Topics
+			</td>
+		</tr>
+		<tr>
+			<td>Sort results by:</td>
+			<td>
+				{S_SELECT_SORT_KEY}
+				<label for="sa"><input type="radio" name="sd" id="sa" value="a" /> {L_SORT_ASCENDING}</label>
+				<label for="sd"><input type="radio" name="sd" id="sd" value="d" checked="checked" /> {L_SORT_DESCENDING}</label>
+			</td>
+		</tr>
+		<tr>
+			<td>Search in selected forums:</td>
+			<td>
+				<select name="fid[]" id="search_forum" multiple="multiple">{S_FORUM_OPTIONS}</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Search within date range:</td>
+			<td>
+				{S_SELECT_SORT_DAYS}
+			</td>
+				<!--<select name='s_m' tabindex='6'>
+					<option value='1'>January</option>
+					<option value='2'>February</option>
+					<option value='3' selected='selected'>March</option>
+					<option value='4'>April</option>
+					<option value='5'>May</option>
+					<option value='6'>June</option>
+					<option value='7'>July</option>
+					<option value='8'>August</option>
+					<option value='9'>September</option>
+					<option value='10'>October</option>
+					<option value='11'>November</option>
+					<option value='12'>December</option>
+				</select>
+				<select name='s_d' tabindex='7'>
+					<option value='1'>1</option>
+					<option value='2'>2</option>
+					<option value='3'>3</option>
+					<option value='4'>4</option>
+					<option value='5'>5</option>
+					<option value='6'>6</option>
+					<option value='7'>7</option>
+					<option value='8' selected='selected'>8</option>
+					<option value='9'>9</option>
+					<option value='10'>10</option>
+					<option value='11'>11</option>
+					<option value='12'>12</option>
+					<option value='13'>13</option>
+					<option value='14'>14</option>
+					<option value='15'>15</option>
+					<option value='16'>16</option>
+					<option value='17'>17</option>
+					<option value='18'>18</option>
+					<option value='19'>19</option>
+					<option value='20'>20</option>
+					<option value='21'>21</option>
+					<option value='22'>22</option>
+					<option value='23'>23</option>
+					<option value='24'>24</option>
+					<option value='25'>25</option>
+					<option value='26'>26</option>
+					<option value='27'>27</option>
+					<option value='28'>28</option>
+					<option value='29'>29</option>
+					<option value='30'>30</option>
+					<option value='31'>31</option>
+				</select>
+				<select name='s_y' tabindex='8'>
+					<option value='2014' selected='selected'>2014</option>
+					<option value='2015'>2015</option>
+					<option value='2016'>2016</option>
+					<option value='2017'>2017</option>
+					<option value='2018'>2018</option></select> to <select name='e_m' tabindex='6'>
+					<option value='1'>January</option>
+					<option value='2'>February</option>
+					<option value='3'>March</option>
+					<option value='4'>April</option>
+					<option value='5'>May</option>
+					<option value='6'>June</option>
+					<option value='7' selected='selected'>July</option>
+					<option value='8'>August</option>
+					<option value='9'>September</option>
+					<option value='10'>October</option>
+					<option value='11'>November</option>
+					<option value='12'>December</option>
+				</select>
+				<select name='e_d' tabindex='7'>
+					<option value='1'>1</option>
+					<option value='2'>2</option>
+					<option value='3'>3</option>
+					<option value='4'>4</option>
+					<option value='5'>5</option>
+					<option value='6'>6</option>
+					<option value='7'>7</option>
+					<option value='8'>8</option>
+					<option value='9'>9</option>
+					<option value='10'>10</option>
+					<option value='11'>11</option>
+					<option value='12'>12</option>
+					<option value='13'>13</option>
+					<option value='14'>14</option>
+					<option value='15'>15</option>
+					<option value='16'>16</option>
+					<option value='17'>17</option>
+					<option value='18'>18</option>
+					<option value='19'>19</option>
+					<option value='20'>20</option>
+					<option value='21'>21</option>
+					<option value='22'>22</option>
+					<option value='23'>23</option>
+					<option value='24'>24</option>
+					<option value='25'>25</option>
+					<option value='26'>26</option>
+					<option value='27'>27</option>
+					<option value='28'>28</option>
+					<option value='29' selected='selected'>29</option>
+					<option value='30'>30</option>
+					<option value='31'>31</option>
+				</select>
+				<select name='e_y' tabindex='8'>
+					<option value='2014'>2014</option>
+					<option value='2015'>2015</option>
+					<option value='2016'>2016</option>
+					<option value='2017'>2017</option>
+					<option value='2018' selected='selected'>2018</option></select>
+				</td>-->
+		</tr>
+		{S_HIDDEN_FIELDS}
+		<input type="hidden" name="sc" id="search_child1" value="1">
+		<input type="hidden" name="terms" id="terms1" value="all" />
+		<tr class='generic'>
+			<td colspan='2'>
+				<input type="submit" name="submit" value="Search" />
+			</td>
+		</tr>
+	</table>
+</form>
+
+
+<!-- INCLUDE overall_footer.html -->

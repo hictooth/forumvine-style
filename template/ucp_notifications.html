@@ -1,0 +1,137 @@
+<!-- grapevinified -->
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+		<!-- IF MODE == 'notification_options' -->
+				<!-- this is the notifications options list -->
+
+				<table class="posts" cellspacing="0">
+						<thead>
+								<tr>
+										<th colspan="{NOTIFICATION_TYPES_COLS}">Notification Options</th>
+								</tr>
+						</thead>
+						<tbody>
+								<tr>
+										<th class="c_cat-title">Notification Type</th>
+										<!-- BEGIN notification_methods -->
+												<th class="c_cat-mark">{notification_methods.NAME}</th>
+										<!-- END notification_methods -->
+								</tr>
+
+								<!-- BEGIN notification_types -->
+
+										<!-- IF notification_types.GROUP_NAME -->
+												<!-- notification group header -->
+												<tr>
+														<th colspan='{NOTIFICATION_TYPES_COLS}'>{notification_types.GROUP_NAME}</th>
+												</tr>
+										<!-- ELSE -->
+												<!-- normal notification type -->
+												<tr>
+														<td class="c_cat-title">
+																{notification_types.NAME}
+																<!-- IF notification_types.EXPLAIN --><br />&nbsp; &nbsp;{notification_types.EXPLAIN}<!-- ENDIF -->
+														</td>
+														<!-- BEGIN notification_methods -->
+																<td class="c_cat-mark">
+																		<input type="checkbox" name="{notification_types.TYPE}_{notification_types.notification_methods.METHOD}"<!-- IF notification_types.notification_methods.AVAILABLE and notification_types.notification_methods.SUBSCRIBED --> checked="checked"<!-- ENDIF --><!-- IF not notification_types.notification_methods.AVAILABLE --> disabled="disabled"<!-- ENDIF --> />
+																</td>
+														<!-- END notification_methods -->
+												</tr>
+										<!-- ENDIF -->
+
+								<!-- END notification_types -->
+
+						</tbody>
+				</table>
+
+		<!-- ELSE -->
+				<!-- this is the list of notifications -->
+
+				<!-- IF .notification_list -->
+						<!-- IF .pagination -->
+								<!-- INCLUDE pagination.html -->
+						<!-- ENDIF -->
+
+						<table class="posts" cellspacing="0">
+								<thead>
+										<tr>
+												<th colspan="4">Notifications</th>
+										</tr>
+								</thead>
+								<tbody>
+										<tr>
+												<th class="c_cat-mark">&nbsp;</th>
+												<th class="c_cat-title">Notification</th>
+												<th class="c_cat-starter">Date</th>
+												<th class="c_cat-mark">&nbsp;</th>
+										</tr>
+
+										<!-- BEGIN notification_list -->
+
+												<tr class="<!-- IF topicrow.S_ROW_COUNT % 2 == 0 -->row2<!-- ELSE -->row1<!-- ENDIF -->">
+
+													<td class="c_cat-mark">
+															<!-- IF notification_list.AVATAR -->{notification_list.AVATAR}<!-- ELSE --><img src="{T_THEME_PATH}/images/no_avatar.png" alt="" /><!-- ENDIF -->
+													</td>
+
+													<td class="c_cat-title">
+														<!-- IF notification_list.URL --><a href="<!-- IF notification_list.UNREAD -->{notification_list.U_MARK_READ}<!-- ELSE -->{notification_list.URL}<!-- ENDIF -->"><!-- ENDIF -->
+														<p class="notifications_title">{notification_list.FORMATTED_TITLE}<!-- IF notification_list.REFERENCE --> {notification_list.REFERENCE}<!-- ENDIF --></p>
+														<!-- IF notification_list.URL --></a><!-- ENDIF -->
+														<!-- IF notification_list.FORUM --><p class="notifications_forum">{notification_list.FORUM}</p><!-- ENDIF -->
+														<!-- IF notification_list.REASON --><p class="notifications_reason">{notification_list.REASON}</p><!-- ENDIF -->
+													</td>
+
+													<td class="c_cat-starter">
+															{notification_list.TIME}
+													</td>
+
+													<td style="width: 1px;">
+															<input type="checkbox" name="mark[]" value="{notification_list.NOTIFICATION_ID}"<!-- IF not notification_list.UNREAD --> disabled="disabled"<!-- ENDIF --> />
+													</td>
+
+												</tr>
+
+										<!-- END notification_list -->
+
+								</tbody>
+						</table>
+
+						<!-- IF .pagination -->
+								<!-- INCLUDE pagination.html -->
+						<!-- ENDIF -->
+
+				<!-- ELSE -->
+						<!-- there are no notification -->
+
+						<table cellspacing="0" id="error_box">
+						    <thead>
+						        <tr>
+						            <th>Error:</th>
+						        </tr>
+						    </thead>
+						    <tbody>
+						        <tr class="generic">
+						            <td>{L_NO_NOTIFICATIONS}</td>
+						        </tr>
+						    </tbody>
+						</table>
+
+				<!-- ENDIF -->
+
+		<!-- ENDIF -->
+
+
+		<!-- IF .notification_types or .notification_list -->
+				<input type="hidden" name="form_time" value="{FORM_TIME}" />
+				{S_HIDDEN_FIELDS}
+				<br>
+				<input type="submit" name="submit" value="<!-- IF MODE == 'notification_options' -->{L_SUBMIT}<!-- ELSE -->{L_MARK_READ}<!-- ENDIF -->" class="button1" />
+				{S_FORM_TOKEN}
+		<!-- ENDIF -->
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

@@ -1,0 +1,383 @@
+<!-- grapevinified -->
+
+<!-- IF S_PRIVMSGS -->
+  <!-- INCLUDE ucp_header.html -->
+<!-- ELSE -->
+  <!-- INCLUDE overall_header.html -->
+<!-- ENDIF -->
+
+<form id="postform" method='post' name='posting' class="exclusivebutton" action="{S_POST_ACTION}"{S_FORM_ENCTYPE}>
+
+  <!-- IF S_DRAFT_LOADED -->
+      <table cellspacing="0" id="error_box">
+          <thead>
+              <tr>
+                  <th>{L_INFORMATION}</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr class="generic">
+                  <td>{L_DRAFT_LOADED}</td>
+              </tr>
+          </tbody>
+      </table>
+  <!-- ENDIF -->
+
+  <table class="posting" cellspacing="0">
+    <!-- table header -->
+    <thead>
+      <tr>
+        <!-- IF TOPIC_TITLE -->
+          <th colspan="2">Posting reply to {TOPIC_TITLE}</th>
+        <!-- ELSEIF S_PRIVMSGS -->
+          <th colspan="2">Compose message</th>
+        <!-- ELSE -->
+          <th colspan="2">Posting new topic in {FORUM_NAME}</th>
+        <!-- ENDIF -->
+      </tr>
+    </thead>
+    <!-- end table header -->
+
+    <!-- message recipients -->
+    <!-- IF S_PRIVMSGS and not S_SHOW_DRAFTS -->
+
+      <!-- IF S_GROUP_OPTIONS -->
+        <!-- send to a group? (I think) -->
+        <tr>
+          <td class="c_desc">{L_TO_ADD_GROUPS}</td>
+          <td><select name="group_list[]" id="group_list" multiple="multiple" size="3" class="inputbox">{S_GROUP_OPTIONS}</select></td>
+        </tr>
+      <!-- ENDIF -->
+
+      <!-- IF S_ALLOW_MASS_PM -->
+        <!-- textarea for adding multiple users to send to -->
+        <tr>
+          <td class="c_desc">{L_TO_ADD_MASS}</td>
+          <td>
+            <textarea id="username_list" name="username_list" class="inputbox" cols="50" rows="2" tabindex="1"></textarea>
+            <input type="submit" name="add_to" value="{L_ADD}" class="button2" tabindex="1" />
+  					<input type="submit" name="add_bcc" value="{L_ADD_BCC}" class="button2" tabindex="1" />
+  					<span><a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;">{L_FIND_USERNAME}</a></span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="c_desc">{L_TO_MASS}</td>
+          <td>
+            <ul class="recipients">
+              <!-- BEGIN to_recipient -->
+              <li>
+                <!-- IF to_recipient.IS_GROUP -->
+                  <a href="{to_recipient.U_VIEW}"><strong>{to_recipient.NAME}</strong></a>
+                <!-- ELSE -->
+                  {to_recipient.NAME_FULL}
+                <!-- ENDIF -->
+
+                &nbsp;
+
+                <!-- IF not S_EDIT_POST -->
+                  <input type="submit" name="remove_{to_recipient.TYPE}[{to_recipient.UG_ID}]" value="Remove" />
+                <!-- ENDIF -->
+              </li>
+              <!-- END to_recipient -->
+            </ul>
+          </td>
+        </tr>
+
+  			<!-- IF .bcc_recipient -->
+          <tr>
+            <td class="c_desc">{L_BCC}</td>
+            <td>
+              <ul class="recipients">
+                <!-- BEGIN bcc_recipient -->
+  							<li>
+  								<!-- IF bcc_recipient.IS_GROUP -->
+                    <a href="{bcc_recipient.U_VIEW}"><strong>{bcc_recipient.NAME}</strong></a>
+                  <!-- ELSE -->
+                    {bcc_recipient.NAME_FULL}
+                  <!-- ENDIF -->
+
+                  &nbsp;
+
+                  <!-- IF not S_EDIT_POST -->
+                    <input type="submit" name="remove_{bcc_recipient.TYPE}[{bcc_recipient.UG_ID}]" value="Remove" />
+                  <!-- ENDIF -->
+  							</li>
+  							<!-- END bcc_recipient -->
+              </ul>
+            </td>
+          </tr>
+  			<!-- ENDIF -->
+
+  		<!-- ELSE -->
+
+        <tr>
+          <td class="c_desc">{L_BCC}</td>
+          <td>
+            <ul class="recipients">
+              <!-- BEGIN to_recipient -->
+              <li>
+                <!-- IF to_recipient.IS_GROUP -->
+                  <a href="{to_recipient.U_VIEW}"><strong>{to_recipient.NAME}</strong></a>
+                <!-- ELSE -->
+                  {to_recipient.NAME_FULL}
+                <!-- ENDIF -->
+
+                &nbsp;
+
+                <!-- IF not S_EDIT_POST -->
+                  <input type="submit" name="remove_{to_recipient.TYPE}[{to_recipient.UG_ID}]" value="Remove" />
+                <!-- ENDIF -->
+              </li>
+              <!-- END to_recipient -->
+            </ul>
+          </td>
+        </tr>
+
+      <!-- ENDIF -->
+    <!-- ENDIF -->
+
+    <!-- new topic title, description and tags -->
+    <!-- IF TOPIC_TITLE -->
+      <input type='hidden' name='subject' value='{SUBJECT}{DRAFT_SUBJECT}' />
+    <!-- ELSE -->
+      <tr>
+        <!-- IF S_PRIVMSGS -->
+          <td class="c_desc">Message Subject</td>
+        <!-- ELSE -->
+          <td class="c_desc">Topic Title</td>
+        <!-- ENDIF -->
+        <td><input type='text' size='40' maxlength='100' name='subject' id='subject' value='{SUBJECT}{DRAFT_SUBJECT}' tabindex='1' autocomplete="off" /></td>
+      </tr>
+    <!-- ENDIF -->
+
+    <!-- IF S_POST_ACTION or S_PRIVMSGS or S_EDIT_DRAFT -->
+    	<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
+    		<!-- DEFINE $CAPTCHA_TAB_INDEX = 3 -->
+    		<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+    	<!-- ENDIF -->
+  	<!-- ENDIF -->
+
+
+    <!-- IF S_DESC_TOPIC -->
+        <tr>
+            <td class="c_desc">Topic Description</td>
+            <td><input type='text' size='40' maxlength='125' name="topic_desc" id="topic_desc" value='' tabindex='2' autocomplete="off" />{TOPIC_DESC}</td>
+        </tr>
+    <!-- ENDIF -->
+
+    <!-- we don't support tags in phpbb -->
+    <!--<tr>
+      <td class="c_desc">Topic Tags<small>Separated by spaces.</small></td>
+      <td><input type='text' size='40' maxlength='100' name='tags' value='' tabindex='3' autocomplete="off" /><br /><small>Optional keyword tags used to help those searching the board for your topic.</small></td>
+    </tr>-->
+    <!-- end new topic title, description and tags -->
+
+    <tr>
+
+      <!-- emojis pane -->
+      <td id="c_emot" rowspan="2">
+        <div id="emot_wrap">
+          <h3>Clickable Emoticons</h3>
+          <ul id="emot_list">
+            <!-- IF S_SMILIES_ALLOWED and .smiley -->
+        			<strong>{L_SMILIES}</strong><br />
+        			<!-- BEGIN smiley -->
+                <li onclick="insert_text('{smiley.A_SMILEY_CODE}', true); return false;"><img src="{smiley.SMILEY_IMG}" alt='{smiley.SMILEY_CODE}' title='{smiley.SMILEY_DESC}' /></li>
+        			<!-- END smiley -->
+        		<!-- ENDIF -->
+          </ul>
+          <!--wtf phpBB<a href="#" id="emot_end">Show All</a>-->
+        </div>
+      </td>
+      <!-- end emojis pane -->
+
+
+
+      <!-- bbcode buttons -->
+      <!-- INCLUDE posting_buttons.html --> <!-- for the js -->
+      <td id="c_bbcode">
+        <button type="button" name="B" accesskey="b" onclick="bbstyle(0)"><strong>B</strong></button>
+        <button type="button" name="I" accesskey="i" onclick="bbstyle(2)"><em>I</em></button>
+        <button type="button" name="U" accesskey="u" onclick="bbstyle(4)"><u>U</u></button>
+        <button type="button" name="S" accesskey="s" onclick="bbstyle(28)"><del>S</del></button>
+        <button type="button" name="Big" accesskey="]" onclick="bbstyle(24)">Bigger</button>
+        <button type="button" name="Small" accesskey="[" onclick="bbstyle(26)">Smaller</button>
+        <button type="button" accesskey="q" name="Quote" onclick="bbstyle(6)">Quote</button>
+        <button type="button" name="URL" accesskey="l" onclick="bbstyle(16)">URL</button>
+        <button type="button" name="IMG" accesskey="m" onclick="bbstyle(14)">Image</button>
+        <button type="button" name="Spolier" accesskey="" onclick="bbstyle(22)">Spoiler</button>
+        <button type="button" name="List" onclick="bbstyle(10)">List</button>
+        <!--<button type="button" name="Table" onmouseover="ZetaHelp('Table')" onclick="ZetaTable()">Table</button>-->
+        <br />
+        <input type="text" class="row1" name="helpbox" size="60" maxlength="120" style="font-size:.8em;border:0px" readonly="readonly" value="Select text and click a style to format the text" />
+        <!--wtf phpBB<a href="http://forums.berksgrapevine.com/keys/?c=1" target="_blank">Full BBCode List</a>-->
+      </td>
+      <!-- end bbcode buttons -->
+    </tr>
+
+
+    <!-- start post text field -->
+    <tr>
+      <td id="c_post">
+
+        <!-- IF S_DISPLAY_PREVIEW -->
+          <div id="c_post-close" title="Close Preview" style="float: right; position: relative; top: 2px; right: 11px; cursor: pointer;">[x]</div>
+          <div id="c_post-preview">
+            {PREVIEW_MESSAGE}
+          </div>
+        <!-- ENDIF -->
+
+        <div id="c_post-wrap">
+          <textarea cols='50' rows='20' name='message' tabindex='3' id="c_post-text">{MESSAGE}{DRAFT_MESSAGE}{SIGNATURE}</textarea>
+          <!--<div id="c_post-resize">
+            <span onclick="postSize(1)">+</span>
+            <span onclick="postSize(0)">&minus;</span>
+          </div>-->
+          <input type="submit" name="preview" value="{L_PREVIEW}" class="btn_safe"<!-- IF not S_PRIVMSGS --> onclick="document.getElementById('postform').action += '#preview';"<!-- ENDIF --> />
+          <!--<input type="submit" name="preview" value="{L_PREVIEW}" class="btn_safe" onclick="document.getElementById('postform').action += '#preview';" />-->
+        </div>
+        <!--<div style="display:none;">
+          <input type="radio" name="zbpost" value="1" /> Cancel Post<br />
+          <input type="radio" name="zbpost" value="0" checked="checked" /> Send Post
+        </div>-->
+      </td>
+    </tr>
+    <!-- end post text field -->
+
+
+    <!-- IF not S_PRIVMSGS and not S_SHOW_DRAFTS and not $SIG_EDIT eq 1 and not TOPIC_TITLE -->
+      <!-- start poll stuff -->
+      <tr>
+        <th colspan="2">Poll Setup <a href="#" onclick="var pollelements = document.getElementsByClassName('pollsetup'); for(var i = 0; i < pollelements.length; i++) { pollelements[i].style.display = ''; }; this.style.display = 'none'; return false;">(Add Poll)</a></th>
+      </tr>
+      <tr class="pollsetup" style="display:none;">
+        <td class="c_desc">Poll&#39;s Question</td>
+        <td>
+          <input type='text' size='40' maxlength='250' name='poll_title' tabindex='4' value="{POLL_TITLE}" autocomplete="off" />
+        </td>
+      </tr>
+      <tr class="pollsetup" style="display:none;">
+        <td class="c_desc">Voting Options</td>
+        <td>
+          Members may pick up to
+          <select name='poll_max_options'>
+            <option value='1' selected="selected">1</option>
+            <option value='2'>2</option>
+            <option value='3'>3</option>
+            <option value='4'>4</option>
+            <option value='5'>5</option>
+            <option value='6'>6</option>
+            <option value='7'>7</option>
+            <option value='8'>8</option>
+            <option value='9'>9</option>
+            <option value='10'>10</option>
+          </select> choices.
+        </td>
+      </tr>
+      <tr class="pollsetup" style="display:none;">
+        <td class="c_desc">Poll Choices<small>Enter one poll choice per line, up to 10</small></td>
+        <td><textarea cols='90%' rows='10' tabindex='5' name='poll_option_text'></textarea></td>
+      </tr>
+    <!-- ENDIF -->
+
+    <!-- dummy fields -->
+      <input type="hidden" name="poll_length" value="0" />
+    <!-- end dummy fields -->
+    <!-- end poll stuf -->
+
+
+    <!--wtf phpBB<tr>
+      <th colspan="2">Attachments</th>
+    </tr>
+    <tr>
+      <td>You can attach files up to <strong>200 KB</strong>.</td>
+      <td id="files_upload">
+        <input type='file' size='30' name='attach[]' onchange='addFileInput(this)' multiple='multiple' />
+      </td>
+    </tr>-->
+
+
+
+
+    <!-- begin moderator stuff -->
+    <!-- IF S_LOCK_TOPIC_ALLOWED or S_LOCK_POST_ALLOWED -->
+      <tr>
+        <th colspan="2">Moderator Options</th>
+      </tr>
+      <tr>
+        <td>After posting:</td>
+        <td>
+          <!-- IF S_LOCK_TOPIC_ALLOWED -->
+    				<input type="checkbox" name="lock_topic" id="lock_topic"{S_LOCK_TOPIC_CHECKED} /> Lock topic<br />
+    			<!-- ENDIF -->
+    			<!-- IF S_LOCK_POST_ALLOWED -->
+    				<input type="checkbox" name="lock_post" id="lock_post"{S_LOCK_POST_CHECKED} /> Lock post<br />
+    			<!-- ENDIF -->
+        </td>
+      </tr>
+    <!-- ENDIF -->
+    <!-- end moderator stuff -->
+
+
+
+    <!-- IF not S_SHOW_DRAFTS and not $SIG_EDIT eq 1 -->
+      <!-- start post options -->
+      <tr>
+        <th colspan="2"><!-- IF S_PRIVMSGS -->Message<!-- ELSE -->Post<!-- ENDIF --> Options</th>
+      </tr>
+      <tr>
+        <td><!-- IF S_PRIVMSGS -->Message<!-- ELSE -->Post<!-- ENDIF --> Options</td>
+        <td>
+          <!-- IF S_BBCODE_ALLOWED -->
+    				<input type="checkbox" name="disable_bbcode" id="disable_bbcode"{S_BBCODE_CHECKED} /> Disable BBCode in your post<br />
+    			<!-- ENDIF -->
+    			<!-- IF S_SMILIES_ALLOWED -->
+    				<input type="checkbox" name="disable_smilies" id="disable_smilies"{S_SMILIES_CHECKED} /> Disable emoticons in your post<br />
+    			<!-- ENDIF -->
+    			<!-- IF S_LINKS_ALLOWED -->
+    				<input type="checkbox" name="disable_magic_url" id="disable_magic_url"{S_MAGIC_URL_CHECKED} /> Disable automatically parsing URLs in your post<br />
+    			<!-- ENDIF -->
+    			<!-- IF S_SIG_ALLOWED -->
+    				<input type="checkbox" name="attach_sig" id="attach_sig"{S_SIGNATURE_CHECKED} /> Include your signature with this post<br />
+    			<!-- ENDIF -->
+    			<!-- IF S_NOTIFY_ALLOWED -->
+    				<input type="checkbox" name="notify" id="notify"{S_NOTIFY_CHECKED} /> Notify me when a reply is posted<br />
+    			<!-- ENDIF -->
+          <!-- IF S_TYPE_TOGGLE -->
+             Post type: <!-- BEGIN topic_type -->
+              <input type="radio" name="topic_type" id="topic_type-{topic_type.VALUE}" value="{topic_type.VALUE}"{topic_type.S_CHECKED} />{topic_type.L_TOPIC_TYPE}
+            <!-- END topic_type -->
+          <!-- ENDIF -->
+        </td>
+      </tr>
+      <!-- end post options -->
+    <!-- ENDIF -->
+
+
+    <!-- post button! -->
+    <tr id="c_postbtn" align="center">
+      <td colspan="2">
+				<!-- IF TOPIC_TITLE -->
+					<input type="submit" accesskey="s" tabindex="6" name="post" value="Post Reply" class="btn_default" />
+        <!-- ELSEIF S_PRIVMSGS -->
+          <input type="submit" accesskey="s" tabindex="6" name="post" value="Send Message" class="btn_default" />
+				<!-- ELSE -->
+					<input type="submit" accesskey="s" tabindex="6" name="post" value="Post Topic" class="btn_default" />
+				<!-- ENDIF -->
+      </td>
+    </tr>
+    <!-- end post button -->
+
+
+  </table>
+  {S_FORM_TOKEN}
+  {S_HIDDEN_ADDRESS_FIELD}
+  {S_HIDDEN_FIELDS}
+</form>
+
+<!-- IF S_PRIVMSGS -->
+  <!-- INCLUDE ucp_footer.html -->
+<!-- ELSE -->
+  <!-- INCLUDE overall_footer.html -->
+<!-- ENDIF -->

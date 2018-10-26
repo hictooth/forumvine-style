@@ -1,0 +1,14 @@
+<!-- grapevinified -->
+<!-- INCLUDE overall_header.html -->
+
+<!-- INCLUDE pagination.html -->
+
+{% if 'sf=titleonly' in _context.BASE_URL or 'search_id=active_topics' in _context.BASE_URL or 'sr=topics' in _context.BASE_URL %}
+<!-- INCLUDE search_results_title.html -->
+{% else %}
+<!-- INCLUDE search_results_post.html -->
+{% endif %}
+
+<!-- INCLUDE pagination.html -->
+
+<!-- INCLUDE overall_footer.html -->

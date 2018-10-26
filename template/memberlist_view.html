@@ -1,0 +1,194 @@
+<!-- grapevinified -->
+
+<!-- INCLUDE overall_header.html -->
+
+<table class="profile" cellspacing="0">
+	<thead>
+		<tr>
+			<th id="profile_menuwrap">
+				<ul id="profile_menu" class="drop_menu">
+					<li><a href="#">Profile Options</a>
+						<ul>
+							<li><a href='{U_SEARCH_USER}' rel='nofollow'>List Member&#39;s Posts</a></li>
+							<li><a href='{{ U_SEARCH_USER|replace({'posts':'topics'}) }}' rel='nofollow'>List Member&#39;s Topics</a></li>
+							<li><a href='http://forums.berksgrapevine.com/stats/name_hist/3953693/' rel='nofollow'>Name History</a></li>
+							<!-- IF S_USER_LOGGED_IN and S_ZEBRA -->
+								<!-- IF U_ADD_FRIEND -->
+									<li><a href='{U_ADD_FRIEND}'>Add To Contacts</a></li>
+								<!-- ELSE IF U_REMOVE_FRIEND -->
+									<li><a href='{U_REMOVE_FRIEND}'>Remove From Contacts</a></li>
+								<!-- ENDIF -->
+							<!-- ENDIF -->
+							<!-- IF U_EDIT_SELF -->
+								<li><a href='{U_EDIT_SELF}'>Edit Profile</a></li>
+							<!-- ENDIF -->
+						</ul>
+					</li>
+				</ul>
+			</th>
+			<th colspan="2" class="l">{USERNAME}</th>
+		</tr>
+	</thead>
+	<tr>
+		<!-- last activity - just time because phpBB doesn't support what the user was doing -->
+		<td class="c_desc">Last Activity</td>
+		<!--<td>10 minutes ago &middot; Viewing Active Users List</td>-->
+		<td>{LAST_ACTIVE}</td>
+		<!-- end last activity -->
+
+		<!-- avatar -->
+		<td class="c_mark" rowspan="4">
+			<div style='margin:auto;max-width: 150px; max-height: 150px;'>
+				<style>.avatar {max-width: 150px; max-height: 150px;}</style>
+				<!-- IF AVATAR_IMG -->
+					{AVATAR_IMG}
+				<!-- ELSE -->
+					<img src="{T_THEME_PATH}/images/no_avatar.png" border="0" alt="Member Avatar" class="avatar" />
+				<!-- ENDIF -->
+			</div>
+		</td>
+		<!-- end avatar -->
+	</tr>
+
+	<!-- status - phpBB doesn't support this -->
+	<tr>
+		<td class="c_desc">Status</td>
+		<td>Not supported by phpBB</td>
+	</tr>
+	<!-- end status -->
+
+	<!-- posts per day -->
+	<tr>
+		<td class="c_desc">Average Posts Per Day</td>
+		<td>{POSTS_DAY}</td>
+	</tr>
+	<!-- end posts per day -->
+
+	<!-- local time -->
+	<!--wtf phpbb<tr>
+		<td class="c_desc">Member&#39;s Local Time</td>
+		<td>Jul 29 2018, 12:19 PM</td>
+	</tr>-->
+	<!-- end local time -->
+
+	<!-- groups joined -->
+	<!-- BEGIN custom_fields -->
+		<!-- IF custom_fields.PROFILE_FIELD_NAME == 'GROUPS_JOINED' -->
+			<tr>
+				<td class="c_desc">Groups Joined</td>
+				<td colspan='2'>{custom_fields.PROFILE_FIELD_VALUE}</td>
+			</tr>
+		<!-- ENDIF -->
+	<!-- END custom_fields -->
+	<!-- wtf phpbb<tr>
+		<td class="c_desc">Groups Joined</td>
+		<td colspan='2'><a href='http://forums.berksgrapevine.com/members/?joinable=9757' class='member'>Not Safe For Berk</a><br /></td>
+	</tr>-->
+	<!-- end groups joined -->
+</table>
+
+
+
+<!-- contact info -->
+<table class="profile" cellspacing="0">
+	<thead>
+		<tr>
+			<th colspan="2">Contact Information</th>
+		</tr>
+	</thead>
+	<tbody>
+		<!-- IF U_EMAIL -->
+		<tr>
+			<td class="c_desc">Email Address:</td>
+			<td><a href="{U_EMAIL}" rel="nofollow">Click Here</a></td>
+		</tr>
+		<!-- ENDIF -->
+
+		<!-- IF U_PM -->
+		<tr>
+			<td class="c_desc">Personal Messenger</td>
+			<td><a href="{U_PM}" rel="nofollow">PM</a></td>
+		</tr>
+		<!-- ENDIF -->
+
+		<!-- BEGIN custom_fields -->
+			<tr>
+			<!-- IF custom_fields.S_PROFILE_CONTACT -->
+				<td class="c_desc">{custom_fields.PROFILE_FIELD_NAME}</td>
+				<td>{custom_fields.PROFILE_FIELD_VALUE}</td>
+			<!-- ENDIF -->
+			</tr>
+		<!-- END custom_fields -->
+	</tbody>
+</table>
+<!-- end contact info -->
+
+
+<table class="profile" cellspacing="0">
+	<thead>
+		<tr>
+			<th colspan="2">Profile Information</th>
+		</tr>
+	</thead>
+
+	<!-- wtf phpbb<tr>
+		<td class="c_desc">Birthday:</td>
+		<td>March 17</td>
+	</tr>-->
+
+	<!-- BEGIN custom_fields -->
+		<tr>
+			<!-- IF not custom_fields.S_PROFILE_CONTACT and not custom_fields.HIDDEN_FIELD -->
+				<td class="c_desc">{custom_fields.PROFILE_FIELD_NAME}</td>
+				<td>{custom_fields.PROFILE_FIELD_VALUE}</td>
+			<!-- ENDIF -->
+		</tr>
+	<!-- END custom_fields -->
+
+	<tr>
+		<th>Account Information</th>
+		<th>Signature</th>
+	</tr>
+
+	<tr>
+		<td class="c_user">
+			<dl class="user_info">
+				<dt>Posts:</dt>
+				<dd>{POSTS}</dd>
+				<dt>Group:</dt>
+				<dd>
+					<!-- BEGIN custom_fields -->
+						<!-- IF custom_fields.PROFILE_FIELD_NAME == 'GROUP_NAME' -->
+							<!-- DEFINE $SET_GROUP = 1 -->
+							{custom_fields.PROFILE_FIELD_VALUE}
+						<!-- ENDIF -->
+					<!-- END custom_fields -->
+					<!-- IF not $SET_GROUP -->
+						Unknown
+					<!-- ENDIF -->
+				</dd>
+				<dt>Member:</dt>
+				<dd>
+					<!-- BEGIN custom_fields -->
+						<!-- IF custom_fields.PROFILE_FIELD_NAME == 'MEMBER_NUMBER' -->
+						<!-- DEFINE $SET_NUMBER = 1 -->
+							{custom_fields.PROFILE_FIELD_VALUE}
+						<!-- ENDIF -->
+					<!-- END custom_fields -->
+					<!-- IF not $SET_NUMBER -->
+						0
+					<!-- ENDIF -->
+				</dd>
+				<dt>Joined:</dt>
+				<dd>{{ JOINED|date("m/d/Y") }}</dd>
+				<dd class="spacer"></dd>
+			</dl>
+		</td>
+		<td class="c_sig">
+			{SIGNATURE}
+		</td>
+	</tr>
+</table>
+
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,145 @@
+<!-- grapevinified -->
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+		<!-- IF ERROR -->
+				<table cellspacing="0" id="error_box">
+						<thead>
+								<tr>
+										<th>Error:</th>
+								</tr>
+						</thead>
+						<tbody>
+								<tr class="generic">
+										<td>{ERROR}</td>
+								</tr>
+						</tbody>
+				</table>
+		<!-- ENDIF -->
+
+		<table cellspacing="0" id="edit_profile">
+				<thead>
+						<tr>
+								<th colspan="2">{L_TITLE}</th>
+						</tr>
+				</thead>
+				<tbody>
+						<tr>
+								<td class="c_desc">{L_VIEW_IMAGES}{L_COLON}</td>
+								<td>
+										<label for="images1"><input type="radio" name="images" id="images1" value="1"<!-- IF S_IMAGES --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+										<label for="images0"><input type="radio" name="images" id="images0" value="0"<!-- IF not S_IMAGES --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+								</td>
+						</tr>
+
+						<tr>
+								<td class="c_desc">{L_VIEW_FLASH}{L_COLON}</td>
+								<td>
+										<label for="flash1"><input type="radio" name="flash" id="flash1" value="1"<!-- IF S_FLASH --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+										<label for="flash0"><input type="radio" name="flash" id="flash0" value="0"<!-- IF not S_FLASH --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+								</td>
+						</tr>
+
+						<tr>
+								<td class="c_desc">{L_VIEW_SMILIES}{L_COLON}</td>
+								<td>
+										<label for="smilies1"><input type="radio" name="smilies" id="smilies1" value="1"<!-- IF S_SMILIES --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+										<label for="smilies0"><input type="radio" name="smilies" id="smilies0" value="0"<!-- IF not S_SMILIES --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+								</td>
+						</tr>
+
+						<tr>
+								<td class="c_desc">{L_VIEW_SIGS}{L_COLON}</td>
+								<td>
+										<label for="sigs1"><input type="radio" name="sigs" id="sigs1" value="1"<!-- IF S_SIGS --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+										<label for="sigs0"><input type="radio" name="sigs" id="sigs0" value="0"<!-- IF not S_SIGS --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+								</td>
+						</tr>
+
+						<tr>
+								<td class="c_desc">{L_VIEW_AVATARS}{L_COLON}</td>
+								<td>
+										<label for="avatars1"><input type="radio" name="avatars" id="avatars1" value="1"<!-- IF S_AVATARS --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+										<label for="avatars0"><input type="radio" name="avatars" id="avatars0" value="0"<!-- IF not S_AVATARS --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+								</td>
+						</tr>
+
+						<!-- IF S_CHANGE_CENSORS -->
+								<tr>
+										<td class="c_desc">{L_DISABLE_CENSORS}{L_COLON}</td>
+										<td>
+												<label for="wordcensor1"><input type="radio" name="wordcensor" id="wordcensor1" value="1"<!-- IF S_DISABLE_CENSORS --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+												<label for="wordcensor0"><input type="radio" name="wordcensor" id="wordcensor0" value="0"<!-- IF not S_DISABLE_CENSORS --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+										</td>
+								</tr>
+						<!-- ENDIF -->
+
+						<tr>
+							<th colspan="2"></th>
+						</tr>
+
+						<tr>
+								<td class="c_desc">{L_VIEW_TOPICS_DAYS}{L_COLON}</td>
+								<td>
+										{S_TOPIC_SORT_DAYS}
+								</td>
+						</tr>
+
+						<tr>
+								<td class="c_desc">{L_VIEW_TOPICS_KEY}{L_COLON}</td>
+								<td>
+										{S_TOPIC_SORT_KEY}
+								</td>
+						</tr>
+
+						<tr>
+								<td class="c_desc">{L_VIEW_TOPICS_DIR}{L_COLON}</td>
+								<td>
+										{S_TOPIC_SORT_DIR}
+								</td>
+						</tr>
+
+						<tr>
+							<th colspan="2"></th>
+						</tr>
+
+						<tr>
+								<td class="c_desc">{L_VIEW_POSTS_DAYS}{L_COLON}</td>
+								<td>
+										{S_POST_SORT_DAYS}
+								</td>
+						</tr>
+
+						<tr>
+								<td class="c_desc">{L_VIEW_POSTS_KEY}{L_COLON}</td>
+								<td>
+										{S_POST_SORT_KEY}
+								</td>
+						</tr>
+
+						<tr>
+								<td class="c_desc">{L_VIEW_POSTS_DIR}{L_COLON}</td>
+								<td>
+										{S_POST_SORT_DIR}
+								</td>
+						</tr>
+
+						<tr>
+								<td align="center" colspan="2">
+									<input type="reset" value="{L_RESET}" name="reset" />
+									&nbsp;
+									<input type="submit" name="submit" value="{L_SUBMIT}" />
+								</td>
+						</tr>
+
+				</tbody>
+		</table>
+
+
+
+		{S_HIDDEN_FIELDS}
+		{S_FORM_TOKEN}
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

@@ -1,0 +1,23 @@
+<!-- grapevinified -->
+
+<!-- IF .searchresults -->
+  <!-- BEGIN searchresults -->
+
+    <div class="search_results">
+      <h3>
+        <a href='{{ searchresults.U_NEWEST_POST }}'>{{ searchresults.TOPIC_TITLE }}</a>
+      </h3>
+      &nbsp;
+      <cite>
+        by {{ searchresults.POST_AUTHOR_FULL }}
+      </cite>
+      <div>
+        {{ searchresults.MESSAGE }}
+      </div>
+      <p>
+        Posted <strong>{{ searchresults.POST_DATE }}</strong> in <a href='{{ searchresults.U_VIEW_FORUM }}'>{{ searchresults.FORUM_TITLE }}</a>
+      </p>
+    </div>
+
+  <!-- END searchresults -->
+<!-- ENDIF -->

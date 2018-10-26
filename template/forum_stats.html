@@ -1,0 +1,52 @@
+<!-- stats -->
+<div id="stats" class="category">
+	<table class="cat_head" id="stats_header">
+		<tr>
+			<td>
+				<h2 class="special">
+					<span class="collapse"><i class="fa fa-minus-circle"></i>&nbsp;</span>
+					Board Statistics
+				</h2>
+			</td>
+		</tr>
+	</table>
+	<table class="forums" cellspacing="0" style="display: table;">
+		<tr>
+			<!--<th colspan="2">3 users online in the past 30 minutes <a href='http://forums.berksgrapevine.com/online/'>(<strong>1</strong> Member &middot; <strong>2</strong> Guests &middot; <strong>0</strong> Anonymous)</a></th>-->
+			<th colspan="2">{TOTAL_USERS_ONLINE} ({L_ONLINE_EXPLAIN})</th>
+		</tr>
+		<tr>
+			<td rowspan="2" class="c_mark"><a href='{U_VIEWONLINE}'><i class="fa fa-users fa-2x" style="color: black"></i></a></td>
+			<!--<td id="stats_members"><a href='http://forums.berksgrapevine.com/profile/3826499/' class='member'><span style="color:#333"><strong>hictooth</strong></span></a></td>-->
+			<td id="stats_members">
+				<!-- IF S_DISPLAY_ONLINE_LIST and U_VIEWONLINE -->
+					{LOGGED_IN_USER_LIST}
+				<!-- ENDIF -->
+			</td>
+		</tr>
+		<tr>
+			<td id="stats_legend">
+				<!--<a href='http://forums.berksgrapevine.com/online/?g=2040799' class='member'><span style="color:#333"><strong>Admins</strong></span></a>-->
+				<a href='{U_VIEWONLINE}' class='member'>{LEGEND}</a>
+			</td>
+		</tr>
+		<tr>
+			<th colspan="2">Board Statistics</th>
+		</tr>
+		<tr>
+			<td class="c_mark"><i class="fa fa-calendar fa-2x"></i></td>
+			<td>{TOTAL_POSTS}<br />{TOTAL_USERS} ({NEWEST_USER})<br />{RECORD_USERS}</td>
+			<!--<td>Total Forum Posts: <strong>84,152</strong><br />Total Members: <strong>1,613</strong> (The newest member is <a href="http://forums.berksgrapevine.com/profile/6227029/">Rozy</a>)<br /><strong>Apr 9 2014, 10:14 PM</strong>, a record <strong>144</strong> users were online.</td>-->
+		</tr>
+		<tr>
+			<td class="c_foot" colspan="2"><span class="right">
+					<a href='{U_TEAM}'>Administration and Moderator List</a> &middot;
+					<!--<a href='http://forums.berksgrapevine.com/search/?c=6'>Replies to Your Topics</a> &middot;-->
+					<a href='{U_SEARCH_ACTIVE_TOPICS}'>Active Topics</a> &middot;
+					<!--<a href='http://forums.berksgrapevine.com/stats/top_posters/'>Top 10 Posters Today</a> &middot;-->
+					<!--<a href='http://forums.berksgrapevine.com/members/?topten'>Top 10 Overall Posters</a></span>-->
+			</td>
+		</tr>
+	</table>
+</div>
+<!-- end stats -->

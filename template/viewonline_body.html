@@ -1,0 +1,60 @@
+<!-- grapevinified -->
+<!-- INCLUDE overall_header.html -->
+
+<table>
+	<thead>
+		<tr>
+			<th colspan="100%">{TOTAL_REGISTERED_USERS_ONLINE}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th colspan="100%">
+				{TOTAL_GUEST_USERS_ONLINE}
+				<!-- IF S_SWITCH_GUEST_DISPLAY -->
+					&bull;
+					<a href="{U_SWITCH_GUEST_DISPLAY}">{L_SWITCH_GUEST_DISPLAY}</a>
+				<!-- ENDIF -->
+			</th>
+		</tr>
+
+		<tr>
+			<th><a href="{U_SORT_USERNAME}">{L_USERNAME}</a></th>
+			<th>IP Address</th>
+			<th>Browser</th>
+			<th><a href="{U_SORT_LOCATION}">{L_FORUM_LOCATION}</a></th>
+			<th><a href="{U_SORT_UPDATED}">{L_LAST_UPDATED}</a></th>
+		</tr>
+
+		<!-- IF .user_row -->
+			<!-- BEGIN user_row -->
+				<tr>
+					<td>{user_row.USERNAME_FULL}</td>
+					<td><!-- IF user_row.USER_IP --><a href="{user_row.U_USER_IP}">{user_row.USER_IP}</a><!-- ENDIF --></td>
+					<td><!-- IF user_row.USER_BROWSER --><br />{user_row.USER_BROWSER}<!-- ENDIF --></td>
+					<td><a href="{user_row.U_FORUM_LOCATION}">{user_row.FORUM_LOCATION}</a></td>
+					<td>{user_row.LASTUPDATE}</td>
+				</t>
+			<!-- END user_row -->
+
+			<!-- IF LEGEND -->
+				<tr>
+					<th colspan="100%"><em>{L_LEGEND}{L_COLON} {LEGEND}</em></th>
+				</tr>
+			<!-- ENDIF -->
+		<!-- ELSE -->
+			<tr>
+				<td colspan="100%">{L_NO_ONLINE_USERS}</td>
+			</tr>
+		<!-- ENDIF -->
+	</tbody>
+</table>
+
+<!-- IF .pagination -->
+	<!-- INCLUDE pagination.html -->
+<!-- ELSE -->
+	{PAGE_NUMBER}
+<!-- ENDIF -->
+
+
+<!-- INCLUDE overall_footer.html -->

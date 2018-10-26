@@ -1,0 +1,57 @@
+<!-- grapevinified -->
+
+<div id="top">
+	<div id="top_info" style="padding-left: 3px;">
+		<!-- IF S_REGISTERED_USER -->
+			Welcome <strong><a href='{U_USER_PROFILE}'>{S_USERNAME}</a></strong>
+			<small><a href="{U_LOGIN_LOGOUT}">[Sign Out]</a></small>
+		<!-- ELSE -->
+			Welcome <strong>Guest</strong>
+			<small><a href="{U_LOGIN_LOGOUT}">[Log In]</a></small>
+			<small><a href="{U_REGISTER}">[Register]</a></small>
+		<!-- ENDIF -->
+	</div>
+	<ul id="top_menu" class="drop_menu">
+
+		<!-- IF S_REGISTERED_USER -->
+
+			<!-- IF U_ACP -->
+			<li id="menu_acp">
+				<a href='{U_ACP}' class='modal'>
+					<i class="fa fa-key"></i>
+					&nbsp;&nbsp; Admin CP</a>
+				</li>
+			<!-- ENDIF -->
+
+			<!-- IF U_MCP -->
+			<li id="menu_rcp">
+				<a href='{U_MODCP}'>
+					<i class="fa fa-exclamation-triangle"></i>
+					&nbsp;&nbsp; Report CP
+				</a>
+			</li>
+			<!-- ENDIF -->
+
+			<li id="menu_pm">
+				<a href="/dragon-chat">
+					<i class="fa fa-comment"></i>
+					Dragon Chat
+				</a>
+			</li>
+
+			<li id="menu_pm">
+				<a href="{U_SEARCH}" style="width: 6em;">
+					<i class="fa fa-search"></i>
+					Search
+				</a>
+			</li>
+
+			<li id="menu_ucp"><a href="{U_PROFILE}"><i class="fa fa-info-circle"></i>&nbsp;&nbsp; Preferences</a></li>
+
+			<li id="menu_pm"><a href="{U_VIEW_ALL_NOTIFICATIONS}"><i class="fa fa-bell"></i>&nbsp;&nbsp; Notifications <strong><small>{NOTIFICATIONS_COUNT}</small></strong></a></li>
+
+			<li id="menu_pm"><a href="{U_PRIVATEMSGS}"><i class="fa fa-inbox"></i>&nbsp;&nbsp; Inbox <strong><small>{S_USER_UNREAD_PRIVMSG}</small></strong></a></li>
+
+		<!-- ENDIF -->
+	</ul>
+</div>

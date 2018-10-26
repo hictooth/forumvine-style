@@ -1,0 +1,65 @@
+<!-- grapevinified -->
+<!-- INCLUDE overall_header.html -->
+
+<!-- IF LOGIN_ERROR -->
+		<table cellspacing="0" id="error_box">
+				<thead>
+						<tr>
+								<th>Error:</th>
+						</tr>
+				</thead>
+				<tbody>
+						<tr class="generic">
+								<td>{LOGIN_ERROR}</td>
+						</tr>
+				</tbody>
+		</table>
+<!-- ENDIF -->
+
+
+<!-- login form -->
+<table cellspacing="0" id="welcome_box">
+	<tr>
+		<td width="300px" style="vertical-align:top">
+		</td>
+		<td style="vertical-align:top">
+			Welcome to <strong>Berk&#39;s Forumvine</strong>, the forum for Berk&#39;s Grapevine members&#33;
+			<br />
+			<br />
+			<span style="display:block;text-align:center">
+				<img src="https://1.bp.blogspot.com/-aY1NDFWv_7A/U0WguYk4TNI/AAAAAAAAC98/NCcOFKOUFNM/s1600/cover.png" alt="Posted Image" width='500' height='295' />
+			</span>
+			<br />
+			Are you already a member? Log in below&#33; If not, you can <a href="{U_REGISTER}" target="_blank" rel="nofollow">register here</a> to join our community&#33;
+			<br />
+			<small>(<a href="{U_SEND_PASSWORD}" target="_blank" rel="nofollow">Forgot your password?</a>)</small>
+			<br />
+			<br />
+			<form action="{S_LOGIN_ACTION}" method="post">
+				<input type="hidden" name="tm" value="" />
+				<input type="hidden" name="cookie_on" value="1" />
+				<span style="white-space:nowrap">
+					Username: <input type='text' size='20' maxlength='250' name='{USERNAME_CREDENTIAL}' value='{USERNAME}' />
+				</span>
+				&nbsp;
+				<span style="white-space:nowrap">
+					Password: <input type='password' size='20' name='{PASSWORD_CREDENTIAL}' />
+				</span>
+
+				<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
+					<!-- DEFINE $CAPTCHA_TAB_INDEX = 3 -->
+					<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+				<!-- ENDIF -->
+
+				{S_LOGIN_REDIRECT}
+				{S_HIDDEN_FIELDS}
+
+				<!--<button type="submit">Log In</button>-->
+				<input type="submit" name="login" value="Log In" />
+			</form>
+		</td>
+	</tr>
+</table>
+<!-- login form -->
+
+<!-- INCLUDE overall_footer.html -->

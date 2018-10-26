@@ -1,0 +1,48 @@
+<!-- grapevinified -->
+<!-- INCLUDE ucp_header.html -->
+
+<table cellspacing="0" id="board_settings">
+    <thead>
+        <tr>
+            <th colspan="2">{L_TITLE}</th>
+        </tr>
+    </thead>
+
+		<tr>
+        <td class="c_desc">{L_JOINED}</td>
+        <td>{JOINED}</td>
+    </tr>
+
+		<tr>
+        <td class="c_desc">{L_LAST_ACTIVE}</td>
+        <td>{LAST_VISIT_YOU}</td>
+    </tr>
+
+		<tr>
+        <td class="c_desc">{L_TOTAL_POSTS}</td>
+        <td><!-- IF POSTS_PCT -->{POSTS}<!-- IF S_DISPLAY_SEARCH --> | <strong><a href="{U_SEARCH_USER}">{L_SEARCH_YOUR_POSTS}</a></strong><!-- ENDIF --><br />({POSTS_DAY} / {POSTS_PCT})<!-- ELSE -->{POSTS}<!-- ENDIF --></td>
+    </tr>
+
+		<!-- IF ACTIVE_FORUM != '' -->
+				<tr>
+		        <td class="c_desc">{L_ACTIVE_IN_FORUM}</td>
+		        <td><strong><a href="{U_ACTIVE_FORUM}">{ACTIVE_FORUM}</a></strong><br />({ACTIVE_FORUM_POSTS} / {ACTIVE_FORUM_PCT})</td>
+		    </tr>
+		<!-- ENDIF -->
+
+		<!-- IF ACTIVE_TOPIC != '' -->
+				<tr>
+		        <td class="c_desc">{L_ACTIVE_IN_TOPIC}</td>
+		        <td><strong><a href="{U_ACTIVE_TOPIC}">{ACTIVE_TOPIC}</a></strong><br />({ACTIVE_TOPIC_POSTS} / {ACTIVE_TOPIC_PCT})</td>
+		    </tr>
+		<!-- ENDIF -->
+
+		<!-- IF WARNINGS -->
+				<tr>
+		        <td class="c_desc">{L_YOUR_WARNINGS}</td>
+		        <td>[{WARNINGS}]</td>
+		    </tr>
+		<!-- ENDIF -->
+</table>
+
+<!-- INCLUDE ucp_footer.html -->

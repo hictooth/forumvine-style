@@ -1,0 +1,37 @@
+<!-- grapevinified -->
+
+<!-- IF S_SIMPLE_MESSAGE -->
+		<!-- INCLUDE simple_header.html -->
+<!-- ELSE -->
+		<!-- INCLUDE overall_header.html -->
+<!-- ENDIF -->
+
+
+<table cellspacing="0" id="error_box">
+		<thead>
+				<tr>
+						<th>{MESSAGE_TITLE}</th>
+				</tr>
+		</thead>
+		<tbody>
+				<tr class="generic">
+						<td>{MESSAGE_TEXT}</td>
+				</tr>
+				<!-- IF SCRIPT_NAME == "search" and not S_BOARD_DISABLED and not S_NO_SEARCH and L_RETURN_TO_SEARCH_ADV -->
+						<tr>
+								<td>
+										<a href="{U_SEARCH}" class="arrow-{S_CONTENT_FLOW_BEGIN}" accesskey="r">
+											<i class="fa fa-angle-{S_CONTENT_FLOW_BEGIN}" aria-hidden="true"></i><span>{L_GO_TO_SEARCH_ADV}</span>
+										</a>
+								</td>
+						</tr>
+				<!-- ENDIF -->
+		</tbody>
+</table>
+
+
+<!-- IF S_SIMPLE_MESSAGE -->
+		<!-- INCLUDE simple_footer.html -->
+<!-- ELSE -->
+		<!-- INCLUDE overall_footer.html -->
+<!-- ENDIF -->

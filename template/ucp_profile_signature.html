@@ -1,0 +1,143 @@
+<!-- grapevinified -->
+<!-- INCLUDE ucp_header.html -->
+<!-- DEFINE $SIG_EDIT = 1 -->
+
+<form id="postform" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+		<!-- IF SIGNATURE_PREVIEW != '' -->
+				<table cellspacing="0" id="sig_box">
+						<thead>
+								<tr>
+										<th>Signature Preview</th>
+								</tr>
+						</thead>
+						<tr>
+								<td class="c_sig">
+										{SIGNATURE_PREVIEW}
+								</td>
+						</tr>
+				</table>
+				<br>
+		<!-- ENDIF -->
+
+
+		<table class="posting" cellspacing="0">
+				<!-- table header -->
+				<thead>
+						<tr>
+								<th colspan="2">Edit Signature</th>
+						</tr>
+				</thead>
+				<!-- end table header -->
+
+				<tr>
+
+						<!-- emojis pane -->
+						<td id="c_emot" rowspan="2">
+								<div id="emot_wrap">
+										<h3>Clickable Emoticons</h3>
+										<ul id="emot_list">
+												<!-- IF S_SMILIES_ALLOWED and .smiley -->
+														<strong>{L_SMILIES}</strong><br />
+														<!-- BEGIN smiley -->
+																<li onclick="insert_text('{smiley.A_SMILEY_CODE}', true); return false;"><img src="{smiley.SMILEY_IMG}" alt='{smiley.SMILEY_CODE}' title='{smiley.SMILEY_DESC}' /></li>
+														<!-- END smiley -->
+												<!-- ENDIF -->
+										</ul>
+										<!--wtf phpBB<a href="#" id="emot_end">Show All</a>-->
+								</div>
+						</td>
+						<!-- end emojis pane -->
+
+
+
+						<!-- bbcode buttons -->
+						<!-- INCLUDE posting_buttons.html --> <!-- for the js -->
+						<td id="c_bbcode">
+								<button type="button" name="B" accesskey="b" onclick="bbstyle(0)"><strong>B</strong></button>
+								<button type="button" name="I" accesskey="i" onclick="bbstyle(2)"><em>I</em></button>
+								<button type="button" name="U" accesskey="u" onclick="bbstyle(4)"><u>U</u></button>
+								<button type="button" name="S" accesskey="s" onclick="bbstyle(28)"><del>S</del></button>
+								<button type="button" name="Big" accesskey="]" onclick="bbstyle(24)">Bigger</button>
+								<button type="button" name="Small" accesskey="[" onclick="bbstyle(26)">Smaller</button>
+								<button type="button" accesskey="q" name="Quote" onclick="bbstyle(6)">Quote</button>
+								<button type="button" name="URL" accesskey="l" onclick="bbstyle(16)">URL</button>
+								<button type="button" name="IMG" accesskey="m" onclick="bbstyle(14)">Image</button>
+								<button type="button" name="Spolier" accesskey="" onclick="bbstyle(22)">Spoiler</button>
+								<button type="button" name="List" onclick="bbstyle(10)">List</button>
+								<!--<button type="button" name="Table" onmouseover="ZetaHelp('Table')" onclick="ZetaTable()">Table</button>-->
+								<br />
+								<input type="text" class="row1" name="helpbox" size="60" maxlength="120" style="font-size:.8em;border:0px" readonly="readonly" value="Select text and click a style to format the text" />
+								<!--wtf phpBB<a href="http://forums.berksgrapevine.com/keys/?c=1" target="_blank">Full BBCode List</a>-->
+						</td>
+						<!-- end bbcode buttons -->
+				</tr>
+
+
+				<!-- start post text field -->
+				<tr>
+						<td id="c_post">
+
+								<!-- IF S_DISPLAY_PREVIEW -->
+										<div id="c_post-close" title="Close Preview" style="float: right; position: relative; top: 2px; right: 11px; cursor: pointer;">[x]</div>
+										<div id="c_post-preview">
+										  {PREVIEW_MESSAGE}
+										</div>
+								<!-- ENDIF -->
+
+								<div id="c_post-wrap">
+										<textarea cols='50' rows='20' name="signature" id="signature" tabindex='3' id="c_post-text">{MESSAGE}{DRAFT_MESSAGE}{SIGNATURE}</textarea>
+										<!--<div id="c_post-resize">
+										  <span onclick="postSize(1)">+</span>
+										  <span onclick="postSize(0)">&minus;</span>
+										</div>-->
+										<input type="submit" name="preview" value="{L_PREVIEW}" class="btn_safe" onclick="document.getElementById('postform').action += '#preview';" />
+								</div>
+								<!--<div style="display:none;">
+										<input type="radio" name="zbpost" value="1" /> Cancel Post<br />
+										<input type="radio" name="zbpost" value="0" checked="checked" /> Send Post
+								</div>-->
+						</td>
+				</tr>
+				<!-- end post text field -->
+
+
+
+				<!-- start post options -->
+				<tr>
+						<th colspan="2">Post Options</th>
+				</tr>
+				<tr>
+						<td>Post Options</td>
+						<td>
+								<!-- IF S_BBCODE_ALLOWED -->
+										<input type="checkbox" name="disable_bbcode" id="disable_bbcode"{S_BBCODE_CHECKED} /> Disable BBCode in your post<br />
+								<!-- ENDIF -->
+								<!-- IF S_SMILIES_ALLOWED -->
+										<input type="checkbox" name="disable_smilies" id="disable_smilies"{S_SMILIES_CHECKED} /> Disable emoticons in your post<br />
+								<!-- ENDIF -->
+								<!-- IF S_LINKS_ALLOWED -->
+										<input type="checkbox" name="disable_magic_url" id="disable_magic_url"{S_MAGIC_URL_CHECKED} /> Disable automatically parsing URLs in your post<br />
+								<!-- ENDIF -->
+						</td>
+				</tr>
+				<!-- end post options -->
+
+
+				<!-- post button! -->
+				<tr id="c_postbtn" align="center">
+						<td colspan="2">
+								{S_HIDDEN_FIELDS}
+								<input type="reset" name="reset" value="{L_RESET}" class="button2" />&nbsp;
+								<input type="submit" name="preview" value="{L_PREVIEW}" class="button2" />&nbsp;
+								<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+								{S_FORM_TOKEN}
+						</td>
+				</tr>
+				<!-- end post button -->
+
+
+		</table>
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

@@ -1,0 +1,92 @@
+<!-- IF not S_AVATARS_ENABLED -->
+		<table cellspacing="0" id="error_box">
+				<thead>
+						<tr>
+								<th>Error:</th>
+						</tr>
+				</thead>
+				<tbody>
+						<tr class="generic">
+								<td>{L_AVATAR_FEATURES_DISABLED}</td>
+						</tr>
+				</tbody>
+		</table>
+<!-- ENDIF -->
+
+<!-- IF ERROR -->
+		<table cellspacing="0" id="error_box">
+				<thead>
+						<tr>
+								<th>Error:</th>
+						</tr>
+				</thead>
+				<tbody>
+						<tr class="generic">
+								<td>{ERROR}</td>
+						</tr>
+				</tbody>
+		</table>
+<!-- ENDIF -->
+
+<table class="ucp" cellspacing="0" id="avatar_gallery_sys">
+		<thead>
+				<tr>
+						<th colspan="3">
+								Avatar Settings
+						</th>
+				</tr>
+		</thead>
+		<tbody>
+				<tr>
+						<th>{L_CURRENT_IMAGE}</th>
+						<th colspan="2">{L_AVATAR_SELECT}</th>
+				</tr>
+				<tr>
+						<td style="width: 1%; text-align: center;" rowspan="2">
+								<!-- IF AVATAR -->
+										{AVATAR}
+								<!-- ELSE -->
+										<img src="{T_THEME_PATH}/images/no_avatar.png" alt="No Avatar" class="member" />
+								<!-- ENDIF -->
+						</td>
+						<td>
+								<!-- select box for chooseing avatar driver (upload, remote, gravatar) -->
+								{L_AVATAR_TYPE}
+						</td>
+
+						<td>
+								<select name="avatar_driver" id="avatar_driver" data-togglable-settings="true">
+										<!-- BEGIN avatar_drivers -->
+												<option value="{avatar_drivers.DRIVER}"<!-- IF avatar_drivers.SELECTED --> selected="selected"<!-- ENDIF --> data-toggle-setting="#avatar_option_{avatar_drivers.DRIVER}">{avatar_drivers.L_TITLE}</option>
+										<!-- END avatar_drivers -->
+								</select>
+						</td>
+				</tr>
+
+				<tr>
+						<td colspan="2">
+								<div id="avatar_options">
+										<!-- BEGIN avatar_drivers -->
+												<!--{avatar_drivers.L_TITLE}
+												{avatar_drivers.L_EXPLAIN}-->
+												<div id="avatar_option_{avatar_drivers.DRIVER}">
+														<table cellspacing="0">
+																{avatar_drivers.OUTPUT}
+														</table>
+												</div>
+										<!-- END avatar_drivers -->
+								</div>
+						</td>
+				</tr>
+
+				<!-- IF not S_GROUP_MANAGE -->
+						<tr>
+								<td colspan="3">
+										<input type="reset" value="{L_RESET}" name="reset" />
+										&nbsp;
+										<input type="submit" name="submit" value="{L_SUBMIT}" />
+								</td>
+						</tr>
+				<!-- ENDIF -->
+		</tbody>
+</table>

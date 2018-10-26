@@ -1,0 +1,394 @@
+<!-- INCLUDE overall_header.html -->
+
+
+<!-- start of topic page -->
+
+<!-- INCLUDE pagination.html -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- IF S_HAS_POLL -->
+<form action="{S_POLL_ACTION}" method="post">
+  <table class="poll" cellspacing="0">
+    <thead>
+      <tr>
+        <th colspan="3">
+					{POLL_QUESTION}
+				</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th colspan="3">
+          <span style="float: left;"></span>
+          <span style="float: right;"></span>
+        </th>
+      </tr>
+
+			<!-- BEGIN poll_option -->
+				<!-- IF S_DISPLAY_RESULTS -->
+				<tr>
+					<td class="c_poll-answer">
+						{poll_option.POLL_OPTION_CAPTION}
+					</td>
+					<td class="c_poll-votes">
+						<strong>{poll_option.POLL_OPTION_RESULT}</strong>
+						<small>({poll_option.POLL_OPTION_PERCENT})</small>
+					</td>
+					<td class="c_poll-bar">
+						<div style="width: {poll_option.POLL_OPTION_PERCENT};"><span></span></div>
+					</td>
+					</tr>
+				<!-- ELSE -->
+					<tr>
+						<td class="c_poll-choice" colspan="3">
+							<!-- IF S_IS_MULTI_CHOICE -->
+								<input type="checkbox" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}" />
+							<!-- ELSE -->
+								<input type="radio" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}" />
+							<!-- ENDIF -->
+							<label for="vote_{poll_option.POLL_OPTION_ID}">{poll_option.POLL_OPTION_CAPTION}</label>
+						</td>
+					</tr>
+				<!-- ENDIF -->
+			<!-- END poll_option -->
+
+      <tr>
+        <td class="c_poll-vote" colspan="3">
+					<input type="submit" name="update" value="Submit Vote" class="btn_mod" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+	{S_FORM_TOKEN}
+	{S_HIDDEN_FIELDS}
+</form>
+<!-- ENDIF -->
+
+<!-- posts table -->
+<table width="100%" border="0" class="topic" cellspacing="0" id="topic_viewer">
+
+	<!-- topic header -->
+	<thead>
+		<tr>
+			<th colspan="2">
+				{TOPIC_TITLE}<!-- IF TOPIC_DESC -->; <small>{TOPIC_DESC}</small><!-- ENDIF -->
+			</th>
+		</tr>
+	</thead>
+	<tr>
+		<th colspan="2">
+			<span class="left">
+				Topic Started: Jul 10 2018, 09:03 PM (1,253 Views)
+			</span>
+			<!-- IF .quickmod -->
+				<!-- BEGIN quickmod -->
+					<!-- IF quickmod.NAME == 'delete_topic' -->
+						&middot;
+						<a href='{quickmod.LINK}'>Delete Topic</a>
+					<!-- ENDIF -->
+				<!-- END quickmod -->
+			<!-- ENDIF -->
+			<span class="right">
+				<!--<a href='http://forums.berksgrapevine.com/poll/?f=4056475&amp;t=30647172'>Append a Poll</a>
+				&middot;
+				<a href='http://forums.berksgrapevine.com/mod/?c=13&amp;t=30647172&amp;f=4056475'>Edit Topic Title</a>-->
+
+				<!-- IF .quickmod -->
+					<!-- BEGIN quickmod -->
+						<!-- IF quickmod.VALUE == 'delete_topic' -->
+							<!--&middot;-->
+							<a href='{quickmod.LINK}'>Delete Topic</a>
+						<!-- ENDIF -->
+					<!-- END quickmod -->
+				<!-- ENDIF -->
+
+				<!-- IF .quickmod -->
+					<!-- BEGIN quickmod -->
+						<!-- IF quickmod.VALUE == 'lock' -->
+							&middot;
+							<a href='{quickmod.LINK}'>Close Topic</a>
+						<!-- ENDIF -->
+					<!-- END quickmod -->
+				<!-- ENDIF -->
+			</span>
+		</th>
+	</tr>
+	<!-- end topic header -->
+
+	<!-- BEGIN postrow -->
+	<!-- start first post! -->
+	<tr id="post-{postrow.POST_ID}">
+		<td class="c_username">
+
+			<a href='{postrow.U_POST_AUTHOR}' class='member'>
+				<span style="color:{postrow.POST_AUTHOR_COLOUR}">
+					<strong>{postrow.POST_AUTHOR}</strong>
+				</span>
+			</a>
+			<a name='post{postrow.POST_ID}'></a>
+		</td>
+		<td class="c_postinfo">
+			<span class="left">
+				{postrow.POST_DATE}
+			</span>
+			<span class="right">
+				Post #{postrow.POST_NUMBER}
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="c_user" rowspan="2">
+			<div style='margin:auto;max-width: 150px; max-height: 150px;'>
+        <style>.avatar {max-height: 150px; max-width: 150px;}</style>
+        <!-- IF postrow.POSTER_AVATAR -->
+          {postrow.POSTER_AVATAR}
+        <!-- ELSE -->
+          <img src="{T_THEME_PATH}/images/no_avatar.png" border="0" alt="Member Avatar" class="avatar" />
+        <!-- ENDIF -->
+      </div>
+
+			<div class="usertitle">
+				<!-- IF postrow.MEMBER_TITLE -->{postrow.MEMBER_TITLE}<!-- ELSE -->{postrow.RANK_TITLE}<!-- ENDIF -->
+                <br />
+				<img src='{postrow.RANK_IMG_SRC}' alt='' />
+                <br />
+			</div>
+
+			<dl class='user_info'>
+				<dt>Posts:</dt><dd>{postrow.POSTER_POSTS}</dd>
+				<dt>Group:</dt><dd><!-- IF postrow.GROUP_NAME -->{postrow.GROUP_NAME}<!-- ELSE -->Unknown<!-- ENDIF --></dd>
+				<dt>Member:</dt><dd>{postrow.POSTER_NUMBER}</dd>
+				<dt>Joined:</dt><dd>{{ postrow.POSTER_JOINED|date("m/d/Y") }}</dd>
+				<dd class="spacer"></dd>
+			</dl>
+
+
+
+			<img src="{T_THEME_PATH}/images/ifrm/blank.gif" height="1" class="c_user" alt="" />
+		</td>
+		<td class="c_post">
+			{postrow.MESSAGE}
+
+			<!-- IF postrow.EDITED_MESSAGE -->
+				<div class="editby">{postrow.EDITED_MESSAGE}</div>
+			<!-- ENDIF -->
+		</td>
+	</tr>
+	<tr>
+		<td class='c_sig'>
+			{postrow.SIGNATURE}
+	</tr>
+	<tr class="c_postfoot">
+		<td>
+			<a href='{U_PM}'>
+				<span class="post_button">
+					<i class="fa fa-envelope"></i>
+					<!-- IF postrow.S_ONLINE -->
+						&nbsp;&nbsp;PM (online)
+					<!-- ELSE -->
+						&nbsp;&nbsp;PM (offline)
+					<!-- ENDIF -->
+				</span>
+			</a>
+
+            &nbsp;
+
+			<a href='{postrow.U_POST_AUTHOR}'>
+				<span class="post_button">
+					<i class="fa fa-user"></i>
+					&nbsp;&nbsp;Profile
+				</span>
+			</a>
+		</td>
+
+		<td class="c_footicons">
+			<span class="left">
+				<!-- IF postrow.U_EDIT -->
+					<a href="{postrow.U_EDIT}">
+						<span class="post_button">
+							<i class="fa fa-pencil"></i>
+							&nbsp;&nbsp;Edit
+						</span>
+					</a>
+                    &nbsp;
+				<!-- ENDIF -->
+
+				<!-- IF postrow.U_DELETE -->
+					<a href="{postrow.U_DELETE}">
+						<span class="post_button">
+							<i class="fa fa-trash-o"></i>
+							&nbsp;&nbsp;Delete
+						</span>
+					</a>
+                    &nbsp;
+				<!-- ENDIF -->
+
+                <!-- IF postrow.U_WARN -->
+                    <a href="{postrow.U_WARN}">
+                        <span class="post_button">
+                            <i class="fa fa-exclamation-triangle"></i>
+                            &nbsp;&nbsp;Warn
+                        </span>
+                    </a>
+                    &nbsp;
+				<!-- ENDIF -->
+
+				<!-- IF postrow.U_INFO -->
+                    <a href="{postrow.U_INFO}">
+                        <span class="post_button">
+                            <i class="fa fa-info"></i>
+                            &nbsp;&nbsp;Info
+                        </span>
+                    </a>
+				<!-- ENDIF -->
+			</span>
+
+
+
+			<span class="right">
+				<!-- IF postrow.U_REPORT -->
+					<a href='{postrow.U_REPORT}' rel='nofollow'>
+						<span class="post_button report_button">
+							<i class="fa fa-exclamation"></i>
+							&nbsp;&nbsp; Report
+						</span>
+					</a>
+				<!-- ENDIF -->
+
+				<!-- IF postrow.U_QUOTE -->
+				<a href="{postrow.U_QUOTE}" class="multi_quote mquote_off" title="multi-quote" style="cursor: pointer;">
+					&nbsp;
+					<span class="post_button nomultiquote" title="Multiquote (off)">
+						<i class="fa fa-quote-left"></i>
+						&nbsp;&nbsp;Quote
+					</span>
+					&nbsp;
+				</span>
+				<!-- ENDIF -->
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<th colspan="2" class="post_sep">&nbsp;</th>
+	</tr>
+	<!-- end first post -->
+	<!-- END postrow -->
+
+	<!-- IF S_DISPLAY_ONLINE_LIST and U_VIEWONLINE -->
+		<tr>
+			<td colspan="2" class="c_view">Users browsing this forum:
+				<div class="c_view-list">{LOGGED_IN_USER_LIST}</div>
+			</td>
+		</tr>
+	<!-- ENDIF -->
+
+
+	<!-- IF .quickmod -->
+	<tr>
+		<td colspan="2" class="c_foot">
+
+            <!-- BEGIN quickmod -->
+                <!-- IF not quickmod.S_FIRST_ROW -->
+                    &middot;
+                <!-- ENDIF -->
+				<a href="{quickmod.LINK}">{quickmod.TITLE}</a>
+			<!-- END quickmod -->
+
+		</td>
+	</tr>
+	<!-- ENDIF -->
+
+    <tr>
+        <td colspan="2" class="c_foot">
+            <!-- IF U_WATCH_TOPIC -->
+				<a href="{U_WATCH_TOPIC}" title="{S_WATCH_TOPIC_TITLE}">
+					<i class="fa <!-- IF S_WATCHING_TOPIC -->fa-square-o<!-- ELSE -->fa-check-square-o<!-- ENDIF -->" aria-hidden="true"></i>
+                    <span>{S_WATCH_TOPIC_TITLE}</span>
+				</a>
+                &middot;
+			<!-- ENDIF -->
+
+			<!-- IF U_BOOKMARK_TOPIC -->
+				<a href="{U_BOOKMARK_TOPIC}" class="bookmark-link" title="{L_BOOKMARK_TOPIC}">
+					<i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                    <span>{S_BOOKMARK_TOPIC}</span>
+				</a>
+                &middot;
+			<!-- ENDIF -->
+
+			<!-- IF U_BUMP_TOPIC -->
+				<a href="{U_BUMP_TOPIC}" title="{L_BUMP_TOPIC}">
+				    <i class="a fa-level-up" aria-hidden="true"></i>
+                    <span>{L_BUMP_TOPIC}</span>
+				</a>
+                &middot;
+			<!-- ENDIF -->
+
+			<!-- IF U_EMAIL_TOPIC -->
+				<a href="{U_EMAIL_TOPIC}" title="{L_EMAIL_TOPIC}">
+					<i class="fa fa-envelope-o" aria-hidden="true"></i>
+                    <span>{L_EMAIL_TOPIC}</span>
+				</a>
+                &middot;
+			<!-- ENDIF -->
+
+			<!-- IF U_PRINT_TOPIC -->
+				<a href="{U_PRINT_TOPIC}" title="{L_PRINT_TOPIC}">
+					<i class="fa fa-print" aria-hidden="true"></i>
+                    <span>{L_PRINT_TOPIC}</span>
+				</a>
+			<!-- ENDIF -->
+        </td>
+    </tr>
+
+
+</table>
+</form>
+<table>
+
+	<!-- IF U_NEXT_PAGE -->
+		<!-- next page button -->
+		<tr>
+			<td colspan="2" class="c_next"><a href="{U_NEXT_PAGE}">Go to Next Page</a></td>
+		</tr>
+		<!-- end next page button -->
+	<!-- ENDIF -->
+
+	<!-- navigation between topics -->
+	<tr>
+		<td colspan="2" class="c_topicfoot">
+			<a href="{U_VIEW_OLDER_TOPIC}" rel='nofollow'>&laquo; Previous Topic</a>
+			&middot;
+			<a href="{U_VIEW_FORUM}"><strong>{FORUM_NAME}</strong></a>
+			&middot;
+			<a href="{U_VIEW_NEWER_TOPIC}" rel='nofollow'>Next Topic &raquo;</a>
+		</td>
+	</tr>
+</table>
+<!-- navigation between topics -->
+
+<!-- reply button -->
+<div class="topic-buttons">
+	<a href='{U_POST_REPLY_TOPIC}' rel='nofollow'>
+		<span class="reply_button">
+			<i class="fa fa-reply"></i>
+			&nbsp;&nbsp;Add Reply
+		</span>
+	</a>
+</div>
+<!-- end reply button -->
+
+<!-- INCLUDE pagination.html -->
+
+<!-- INCLUDE overall_footer.html -->

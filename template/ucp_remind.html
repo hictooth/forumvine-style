@@ -1,0 +1,37 @@
+<!-- grapevinified -->
+<!-- INCLUDE overall_header.html -->
+
+<form action="{S_PROFILE_ACTION}" method="post" id="remind">
+
+	<table>
+		<thead>
+			<tr>
+				<th colspan="100%">{L_SEND_PASSWORD}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="c_desc">{L_USERNAME}</td>
+				<td><input class="inputbox narrow" type="text" name="username" id="username" size="25" /></td>
+			</tr>
+
+			<tr>
+				<td class="c_desc">{L_EMAIL_ADDRESS} <small>{L_EMAIL_REMIND}</small></td>
+				<td><input class="inputbox narrow" type="email" name="email" id="email" size="25" maxlength="100" /></td>
+			</tr>
+
+			<tr>
+				<td colspan="100%">
+					<input type="submit" name="submit" id="submit" class="button1" value="{L_SUBMIT}" tabindex="2" />
+					&nbsp;
+					<input type="reset" value="{L_RESET}" name="reset" class="button2" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	{S_HIDDEN_FIELDS}
+	{S_FORM_TOKEN}
+</form>
+
+<!-- INCLUDE overall_footer.html -->

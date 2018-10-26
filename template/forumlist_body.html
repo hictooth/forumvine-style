@@ -1,0 +1,78 @@
+<!-- grapevinified -->
+<!-- forumlist body starts here -->
+
+<!-- BEGIN forumrow -->
+
+	<!-- IF (forumrow.S_IS_CAT and not forumrow.S_FIRST_ROW) or forumrow.S_NO_CAT  -->
+			<!-- last row -->
+			<tr>
+				<td colspan="5" class="c_foot"></td>
+			</tr>
+		</table>
+		</div>
+		<!-- EVENT forumlist_body_last_row_after -->
+	<!-- ENDIF -->
+
+	<!-- EVENT forumlist_body_category_header_before -->
+	<!-- IF forumrow.S_IS_CAT or forumrow.S_FIRST_ROW  or forumrow.S_NO_CAT  -->
+		<div id="cat-{forumrow.FORUM_ID}" class="category">
+			<table class="cat_head">
+				<tr>
+					<td>
+						<h2>
+							<span class="collapse"><i class="fa fa-minus-circle"></i>&nbsp;</span>
+							<!-- IF forumrow.S_IS_CAT -->
+								<a href='{forumrow.U_VIEWFORUM}'>{forumrow.FORUM_NAME}</a>
+							<!-- ELSE -->
+								<!-- EVENT viewforum_forum_title_before -->
+								<!-- EVENT viewforum_forum_name_prepend -->
+								<a href="{U_VIEW_FORUM}">{FORUM_NAME}</a>
+								<!-- EVENT viewforum_forum_name_append -->
+								<!-- EVENT viewforum_forum_title_after -->
+							<!-- ENDIF -->
+						</h2>
+					</td>
+				</tr>
+			</table>
+			<table class="forums" cellspacing="0" style="display: table;">
+	<!-- ENDIF -->
+	<!-- EVENT forumlist_body_category_header_after -->
+
+	<!-- IF not forumrow.S_IS_CAT -->
+		<!-- EVENT forumlist_body_forum_row_before -->
+		<tr id="forum-{forumrow.FORUM_ID}" class="forum">
+			<td rowspan="2" class="c_mark">
+				<!-- IF forumrow.S_UNREAD_FORUM -->
+					<i class="fa fa-folder-open fa-2x" style="color: #688b6a"></i>
+				<!-- ELSE -->
+					<i class="fa fa-folder fa-2x" style="color: #688b6a"></i>
+				<!-- ENDIF -->
+			</td>
+			<td rowspan="2" class="c_forum">
+				<strong><a href="{forumrow.U_VIEWFORUM}">{forumrow.FORUM_NAME}</a></strong>
+				<div>{forumrow.FORUM_DESC}</div>
+			</td>
+			<td colspan="3" class="c_last">
+				<a href='{forumrow.U_LAST_POST}' class="c_last-title">{forumrow.LAST_POST_SUBJECT}</a>
+				{forumrow.LAST_POST_TIME}, By <strong>{forumrow.LAST_POSTER_FULL}</strong>
+			</td>
+		</tr>
+		<tr class="c_info">
+			<td class="c_info-v">0 viewers</td>
+			<td class="c_info-t">Topics: {forumrow.TOPICS}</td>
+			<td class="c_info-r">Replies: {forumrow.POSTS}</td>
+		</tr>
+	<!-- ENDIF -->
+
+	<!-- IF forumrow.S_LAST_ROW -->
+				<!-- last row -->
+				<tr>
+					<td colspan="5" class="c_foot"></td>
+				</tr>
+			</table>
+		</div>
+	<!-- EVENT forumlist_body_last_row_after -->
+	<!-- ENDIF -->
+
+
+<!-- END forumrow -->

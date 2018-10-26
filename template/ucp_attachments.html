@@ -1,0 +1,87 @@
+<!-- grapevinified -->
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+		<!-- IF .attachrow -->
+				<!-- IF .pagination -->
+						<!-- INCLUDE pagination.html -->
+				<!-- ENDIF -->
+
+				<table class="posts" cellspacing="0">
+						<thead>
+								<tr>
+										<th colspan="7">Attachments</th>
+								</tr>
+						</thead>
+						<tbody>
+								<tr>
+										<th class="c_cat-title">Filename</th>
+										<th class="c_cat-starter">Size</th>
+										<th class="c_cat-replies">From</th>
+										<th class="c_cat-views">Downloads</th>
+										<th class="c_cat-lastpost">Post Time</th>
+										<th class="c_cat-mark">&nbsp;</th>
+								</tr>
+
+								<!-- BEGIN attachrow -->
+
+
+										<tr class="<!-- IF topicrow.S_ROW_COUNT % 2 == 0 -->row2<!-- ELSE -->row1<!-- ENDIF -->">
+
+											<td class="c_cat-title">
+													<a href="{attachrow.U_VIEW_ATTACHMENT}" class="topictitle attachment-filename ellipsis-text" title="{attachrow.FILENAME}">{attachrow.FILENAME}</a>
+											</td>
+
+											<td class="c_cat-starter">
+													{attachrow.SIZE}
+											</td>
+
+											<td class="c_cat-replies">
+													<!-- IF attachrow.S_IN_MESSAGE -->{L_PM}{L_COLON} <!-- ELSE -->{L_TOPIC}{L_COLON} <!-- ENDIF --><a href="{attachrow.U_VIEW_TOPIC}">{attachrow.TOPIC_TITLE}</a>
+											</td>
+
+											<td class="c_cat-views">
+													{attachrow.DOWNLOAD_COUNT}
+											</td>
+
+											<td class="c_cat-lastpost">
+													{attachrow.POST_TIME}
+											</td>
+
+											<td style="width: 1px;">
+													<input type="checkbox" name="attachment[{attachrow.ATTACH_ID}]" value="1" />
+											</td>
+
+										</tr>
+								<!-- END attachrow -->
+
+						</tbody>
+				</table>
+
+				<!-- IF .pagination -->
+						<!-- INCLUDE pagination.html -->
+				<!-- ENDIF -->
+		<!-- ELSE -->
+				<table cellspacing="0" id="error_box">
+						<thead>
+								<tr>
+										<th>Error:</th>
+								</tr>
+						</thead>
+						<tbody>
+								<tr class="generic">
+										<td>You do not have any attachments</td>
+								</tr>
+						</tbody>
+				</table>
+		<!-- ENDIF -->
+
+		<!-- IF S_ATTACHMENT_ROWS -->
+				<br>
+				<input class="button2" type="submit" name="delete" value="{L_DELETE_MARKED}" />
+				{S_FORM_TOKEN}
+		<!-- ENDIF -->
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

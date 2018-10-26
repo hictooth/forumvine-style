@@ -1,0 +1,46 @@
+<!-- grapevinified -->
+
+
+<table cellspacing="0" style="margin:1em 0;" id="conversation">
+		<thead>
+				<tr>
+						<th colspan="2">Full Conversation: {SUBJECT}</th>
+				</tr>
+		</thead>
+    <tbody>
+				<!-- BEGIN history_row -->
+		        <tr>
+		            <td colspan="4" class="c_postinfo">
+		                <span class="left">
+												<big>{history_row.MESSAGE_AUTHOR_FULL}</big>
+												 ·
+												 {history_row.SENT_DATE}
+										</span>
+		                <span class="right">
+												<!-- IF history_row.U_QUOTE or history_row.MESSAGE_AUTHOR_QUOTE -->
+														<a <!-- IF history_row.U_QUOTE -->href="{history_row.U_QUOTE}"<!-- ELSE -->href="#postingbox" onclick="addquote({history_row.MSG_ID}, '{history_row.MESSAGE_AUTHOR_QUOTE}', '{LA_WROTE}', {time:{history_row.MESSAGE_TIME},user_id:{history_row.USER_ID}});"<!-- ENDIF --> title="{L_QUOTE} {history_row.MESSAGE_AUTHOR}" class="button button-icon-only">
+				                        <span class="post_button">
+				                            <i class="fa fa-quote-left"></i>
+				                            &nbsp;&nbsp;Quote Reply
+				                        </span>
+				                    </a>
+												<!-- ENDIF -->
+		                </span>
+		            </td>
+		        </tr>
+		        <tr>
+		            <td colspan="4" class="c_post">
+		                <!-- IF history_row.MESSAGE -->
+												{history_row.MESSAGE}
+										<!-- ELSE -->
+												<span class="error">{L_MESSAGE_REMOVED_FROM_OUTBOX}</span>
+										<!-- ENDIF -->
+		            </td>
+		        </tr>
+				<!-- END history_row -->
+
+        <tr>
+            <td class="c_foot" colspan="4"> </td>
+        </tr>
+    </tbody>
+</table>

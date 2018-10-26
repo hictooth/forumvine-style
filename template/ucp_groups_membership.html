@@ -1,0 +1,244 @@
+<!-- grapevinified -->
+<!-- INCLUDE ucp_header.html -->
+
+<div style="float: left; margin-bottom: 10px;">{L_GROUPS_EXPLAIN}</div>
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+		<!-- DEFINE $SHOW_BUTTONS = 0 -->
+
+
+		<!-- leadership groups -->
+		<!-- IF .leader or .member -->
+
+				<table cellspacing="0">
+						<thead>
+								<tr>
+										<th colspan="4" style="text-align: center;">Default Group</th>
+								</tr>
+						</thead>
+						<tbody>
+
+								<tr>
+										<th class="c_cat-mark">&nbsp;</th>
+										<th class="c_cat-title">Group</th>
+										<th class="c_cat-lastpost">Description</th>
+										<th class="c_cat-mark">&nbsp;</th>
+								</tr>
+
+								<!-- IF .leader -->
+										<tr>
+												<th colspan="4" style="text-align: center;">{L_GROUP_LEADER}</th>
+										</tr>
+
+										<!-- BEGIN leader -->
+
+												<!-- not overly sure what this does -->
+												<!-- IF not leader.GROUP_SPECIAL -->
+														<!-- DEFINE $SHOW_BUTTONS = 1 -->
+												<!-- ENDIF -->
+
+												<tr>
+														<td class="c_cat-mark">
+																<!-- IF S_CHANGE_DEFAULT --><input title="{L_CHANGE_DEFAULT_GROUP}" type="radio" name="default"<!-- IF leader.S_GROUP_DEFAULT --> checked="checked"<!-- ENDIF --> value="{leader.GROUP_ID}" /> <!-- ENDIF -->
+														</td>
+
+														<td class="c_cat-title">
+																<a href="{leader.U_VIEW_GROUP}" class="forumtitle"<!-- IF leader.GROUP_COLOUR --> style="color:#{leader.GROUP_COLOUR}"<!-- ENDIF -->>{leader.GROUP_NAME}</a>
+														</td>
+
+														<td class="c_cat-lastpost">
+																<!-- IF leader.GROUP_DESC -->{leader.GROUP_DESC}<!-- IF not leader.GROUP_SPECIAL --><br /><!-- ENDIF --><!-- ENDIF -->
+																<!-- IF not leader.GROUP_SPECIAL --><i>{leader.GROUP_STATUS}</i><!-- ENDIF -->
+														</td>
+
+														<td class="c_cat-mark">
+																<input type="radio" name="selected" value="{leader.GROUP_ID}" <!-- IF leader.GROUP_SPECIAL -->disabled="disabled"<!-- ENDIF --> />
+														</td>
+												</tr>
+
+										<!-- END leader -->
+								<!-- ENDIF -->
+
+
+								<!-- IF .member -->
+										<tr>
+												<th colspan="4" style="text-align: center;">{L_GROUP_MEMBER}</th>
+										</tr>
+
+										<!-- BEGIN member -->
+
+												<!-- not overly sure what this does -->
+												<!-- IF not member.GROUP_SPECIAL -->
+													<!-- DEFINE $SHOW_BUTTONS = 1 -->
+												<!-- ENDIF -->
+
+												<tr>
+														<td class="c_cat-mark">
+																<!-- IF S_CHANGE_DEFAULT --><input title="{L_CHANGE_DEFAULT_GROUP}" type="radio" name="default"<!-- IF member.S_GROUP_DEFAULT --> checked="checked"<!-- ENDIF --> value="{member.GROUP_ID}" /> <!-- ENDIF -->
+														</td>
+
+														<td class="c_cat-title">
+																<a href="{member.U_VIEW_GROUP}" class="forumtitle"<!-- IF member.GROUP_COLOUR --> style="color:#{member.GROUP_COLOUR}"<!-- ENDIF -->>{member.GROUP_NAME}</a>
+														</td>
+
+														<td class="c_cat-lastpost">
+															<!-- IF member.GROUP_DESC --><br />{member.GROUP_DESC}<!-- ENDIF -->
+															<!-- IF not member.GROUP_SPECIAL --><br /><i>{member.GROUP_STATUS}</i><!-- ENDIF -->
+														</td>
+
+														<td class="c_cat-mark">
+																<input type="radio" name="selected" value="{member.GROUP_ID}" <!-- IF member.GROUP_SPECIAL -->disabled="disabled"<!-- ENDIF --> />
+														</td>
+												</tr>
+
+										<!-- END member -->
+
+								<!-- ENDIF -->
+
+
+								<!-- IF S_CHANGE_DEFAULT -->
+										<tr>
+												<td colspan="4">
+														<input class="button2" type="submit" name="change_default" value="{L_CHANGE_DEFAULT_GROUP}" />
+												</td>
+										</tr>
+
+										{S_FORM_TOKEN}
+								<!-- ENDIF -->
+
+						</tbody>
+				</table>
+
+		<!-- ENDIF -->
+
+
+
+
+		<!-- IF .pending or .nonmember -->
+
+				<br>
+				<table cellspacing="0">
+						<thead>
+								<tr>
+										<th colspan="3">{L_GROUP_PENDING}</th>
+								</tr>
+						</thead>
+						<tbody>
+
+								<tr>
+										<th class="c_cat-title">Group</th>
+										<th class="c_cat-lastpost">Description</th>
+										<th class="c_cat-mark">&nbsp;</th>
+								</tr>
+
+								<!-- membership pending groups -->
+								<!-- IF .pending -->
+
+										<tr>
+												<th colspan="3" style="text-align: center;">{L_GROUP_PENDING}</th>
+										</tr>
+
+										<!-- BEGIN pending -->
+
+												<!-- not overly sure what this does -->
+												<!-- IF not pending.GROUP_SPECIAL -->
+														<!-- DEFINE $SHOW_BUTTONS = 1 -->
+												<!-- ENDIF -->
+
+												<tr>
+														<td class="c_cat-title">
+																<a href="{pending.U_VIEW_GROUP}" class="forumtitle"<!-- IF pending.GROUP_COLOUR --> style="color:#{pending.GROUP_COLOUR}"<!-- ENDIF -->>{pending.GROUP_NAME}</a>
+														</td>
+
+														<td class="c_cat-lastpost">
+																<!-- IF pending.GROUP_DESC --><br />{pending.GROUP_DESC}<!-- ENDIF -->
+																<!-- IF not pending.GROUP_SPECIAL --><br /><i>{pending.GROUP_STATUS}</i><!-- ENDIF -->
+														</td>
+
+														<td class="c_cat-mark">
+																<input type="radio" name="selected" value="{pending.GROUP_ID}" <!-- IF pending.GROUP_SPECIAL -->disabled="disabled"<!-- ENDIF --> />
+														</td>
+												</tr>
+
+										<!-- END pending -->
+
+								<!-- ENDIF -->
+
+
+								<!-- IF .nonmember -->
+
+										<tr>
+												<th colspan="3" style="text-align: center;">{L_GROUP_NONMEMBER}</th>
+										</tr>
+
+										<!-- BEGIN nonmember -->
+
+												<!-- not overly sure what this does -->
+												<!-- IF nonmember.S_CAN_JOIN -->
+														<!-- DEFINE $SHOW_BUTTONS = 1 -->
+												<!-- ENDIF -->
+
+												<tr>
+														<td class="c_cat-title">
+																<a href="{nonmember.U_VIEW_GROUP}" class="forumtitle"<!-- IF nonmember.GROUP_COLOUR --> style="color:#{nonmember.GROUP_COLOUR}"<!-- ENDIF -->>{nonmember.GROUP_NAME}</a>
+														</td>
+
+														<td class="c_cat-lastpost">
+																<!-- IF nonmember.GROUP_DESC --><br />{nonmember.GROUP_DESC}<!-- ENDIF -->
+																<!-- IF not nonmember.GROUP_SPECIAL --><br /><i>{nonmember.GROUP_STATUS}</i><!-- ENDIF -->
+														</td>
+
+														<td class="c_cat-mark">
+																<input type="radio" name="selected" value="{nonmember.GROUP_ID}" <!-- IF not nonmember.S_CAN_JOIN -->disabled="disabled"<!-- ENDIF --> />
+														</td>
+												</tr>
+
+										<!-- END nonmember -->
+
+								<!-- ENDIF -->
+
+						</tbody>
+				</table>
+		<!-- ENDIF -->
+
+
+		<!-- IF S_CHANGE_DEFAULT or $SHOW_BUTTONS eq 1 -->
+				<table cellspacing="0">
+						<tbody>
+
+								<tr style="visibility: hidden;">
+										<td class="c_cat-title"></td>
+
+										<td class="c_cat-lastpost"></td>
+
+										<td class="c_cat-mark"></td>
+								</tr>
+
+								<tr>
+
+										<td class="c_cat-title"></td>
+
+										<td colspan="2" style="text-align: center;">
+												<!-- IF $SHOW_BUTTONS eq 1 -->
+														<div>
+																<select name="action" id="action">
+																	<option value="join">{L_JOIN_SELECTED}</option>
+																	<option value="resign">{L_RESIGN_SELECTED}</option>
+																	<option value="demote">{L_DEMOTE_SELECTED}</option>
+																</select>
+																&nbsp;
+																<input class="button2" type="submit" name="submit" value="{L_SUBMIT}" />
+																{S_FORM_TOKEN}
+														</div>
+												<!-- ENDIF -->
+										</td>
+								</tr>
+
+						</tbody>
+				</table>
+		<!-- ENDIF -->
+
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

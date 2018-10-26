@@ -1,0 +1,43 @@
+<!-- grapevinified -->
+<!-- INCLUDE overall_header.html -->
+
+<!-- BEGIN group -->
+<table cellspacing="0" id="forum_leaders_global">
+	<thead>
+		<tr>
+			<!-- IF S_DISPLAY_MODERATOR_FORUMS and group.GROUP_NAME != "Administrators" -->
+				<th colspan="3">{group.GROUP_NAME}</th>
+			<!-- ELSE -->
+				<th colspan="2">{group.GROUP_NAME}</th>
+			<!-- ENDIF -->
+		</tr>
+	</thead>
+	<tr>
+		<th width='30%' align='left'>Member Name</th>
+		<!-- IF S_DISPLAY_MODERATOR_FORUMS and group.GROUP_NAME != "Administrators" -->
+			<th width='30%' align='center'>Moderator of</th>
+		<!-- ENDIF -->
+		<th width='55%' align='center'>Location</th>
+	</tr>
+
+	<!-- BEGIN user -->
+		<tr>
+			<td align='left'>
+				{group.user.USERNAME_FULL}
+			</td>
+			<!-- IF S_DISPLAY_MODERATOR_FORUMS and group.GROUP_NAME != "Administrators" -->
+				<td align='center'>
+					{group.user.GROUP_NAME}
+					<!--<a href='http://forums.berksgrapevine.com/forum/4056500/'>Roleplaying</a>-->
+				</td>
+			<!-- ENDIF -->
+			<td align='center'>{group.user.PROFILE_PHPBB_LOCATION_VALUE}</td>
+		</tr>
+	<!-- END user -->
+
+</table>
+
+<br />
+<!-- END group -->
+
+<!-- INCLUDE overall_footer.html -->
