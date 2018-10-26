@@ -1,0 +1,167 @@
+<!-- grapevine -->
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+		<!-- IF ERROR -->
+				<table cellspacing="0" id="error_box">
+						<thead>
+								<tr>
+										<th>Error:</th>
+								</tr>
+						</thead>
+						<tbody>
+								<tr class="generic">
+										<td>{ERROR}</td>
+								</tr>
+						</tbody>
+				</table>
+		<!-- ENDIF -->
+
+		<table cellspacing="0" id="edit_profile">
+    <thead>
+        <tr>
+            <th colspan="2">{L_TITLE}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="c_desc">{L_SHOW_EMAIL}{L_COLON}</td>
+            <td>
+								<label for="viewemail1"><input type="radio" name="viewemail" id="viewemail1" value="1"<!-- IF S_VIEW_EMAIL --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+								<label for="viewemail0"><input type="radio" name="viewemail" id="viewemail0" value="0"<!-- IF not S_VIEW_EMAIL --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+						</td>
+        </tr>
+
+        <tr>
+            <td class="c_desc">{L_ADMIN_EMAIL}{L_COLON}</td>
+            <td>
+								<label for="massemail1"><input type="radio" name="massemail" id="massemail1" value="1"<!-- IF S_MASS_EMAIL --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+								<label for="massemail0"><input type="radio" name="massemail" id="massemail0" value="0"<!-- IF not S_MASS_EMAIL --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+						</td>
+        </tr>
+
+				<!-- IF S_CAN_HIDE_ONLINE -->
+		        <tr>
+		            <td class="c_desc">{L_ALLOW_PM}{L_COLON} <small>{L_HIDE_ONLINE_EXPLAIN}</small></td>
+		            <td>
+										<label for="hideonline1"><input type="radio" name="hideonline" id="hideonline1" value="1"<!-- IF S_HIDE_ONLINE --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+										<label for="hideonline0"><input type="radio" name="hideonline" id="hideonline0" value="0"<!-- IF not S_HIDE_ONLINE --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+								</td>
+		        </tr>
+				<!-- ENDIF -->
+
+				<!-- IF S_SELECT_NOTIFY -->
+		        <tr>
+		            <td class="c_desc">{L_NOTIFY_METHOD}{L_COLON}</td>
+		            <td>
+										<label for="notifymethod0"><input type="radio" name="notifymethod" id="notifymethod0" value="0"<!-- IF S_NOTIFY_EMAIL --> checked="checked"<!-- ENDIF --> /> {L_NOTIFY_METHOD_EMAIL}</label>
+										<label for="notifymethod1"><input type="radio" name="notifymethod" id="notifymethod1" value="1"<!-- IF S_NOTIFY_IM --> checked="checked"<!-- ENDIF --> /> {L_NOTIFY_METHOD_IM}</label>
+										<label for="notifymethod2"><input type="radio" name="notifymethod" id="notifymethod2" value="2"<!-- IF S_NOTIFY_BOTH --> checked="checked"<!-- ENDIF --> /> {L_NOTIFY_METHOD_BOTH}</label>
+								</td>
+		        </tr>
+				<!-- ENDIF -->
+
+				<tr>
+						<td class="c_desc" rowspan="3">{L_BOARD_TIMEZONE}{L_COLON}</td>
+						<td>
+								<!-- IF .timezone_date -->
+										<select name="tz_date" id="tz_date" class="autowidth tz_select">
+												<option value="">{L_SELECT_CURRENT_TIME}</option>
+												<!-- BEGIN timezone_date -->
+														<option value="{timezone_date.VALUE}"<!-- IF timezone_date.SELECTED --> selected="selected"<!-- ENDIF -->>{timezone_date.TITLE}</option>
+												<!-- END timezone_date -->
+										</select>
+								<!-- ENDIF -->
+						</td>
+				</tr>
+
+				<tr>
+						<td>
+								<select name="tz" id="timezone" class="autowidth tz_select timezone">
+										<option value="">{L_SELECT_TIMEZONE}</option>
+										<!-- BEGIN timezone_select -->
+										<optgroup label="{timezone_select.LABEL}" data-tz-value="{timezone_select.VALUE}">
+												<!-- BEGIN timezone_options -->
+														<option title="{timezone_select.timezone_options.TITLE}" value="{timezone_select.timezone_options.VALUE}"<!-- IF timezone_select.timezone_options.SELECTED --> selected="selected"<!-- ENDIF -->>{timezone_select.timezone_options.LABEL}</option>
+												<!-- END timezone_options -->
+										</optgroup>
+										<!-- END timezone_select -->
+								</select>
+						</td>
+				</tr>
+
+				<tr>
+						<td>
+								<!-- IF .timezone_date -->
+										<input type="button" id="tz_select_date_suggest" style="margin-left: 7px; margin-right: 7px; display: none;" timezone-preselect="<!-- IF S_TZ_PRESELECT -->true<!-- ELSE -->false<!-- ENDIF -->" data-l-suggestion="{L_TIMEZONE_DATE_SUGGESTION}" value="{L_TIMEZONE_DATE_SUGGESTION}" />
+								<!-- ENDIF -->
+						</td>
+				</tr>
+				<!-- INCLUDEJS timezone.js -->
+
+				<!-- IF S_MORE_LANGUAGES -->
+        <tr>
+            <td class="c_desc">{L_BOARD_DATE_FORMAT}{L_COLON} <small>{L_BOARD_DATE_FORMAT_EXPLAIN}</small></td>
+            <td>
+								<select name="dateoptions" id="dateoptions" onchange="if(this.value=='custom'){phpbb.toggleDisplay('custom_date',1);}else{phpbb.toggleDisplay('custom_date',-1);} if (this.value == 'custom') { document.getElementById('dateformat').value = default_dateformat; } else { document.getElementById('dateformat').value = this.value; }">
+										{S_DATEFORMAT_OPTIONS}
+								</select>
+								<input type="text" name="dateformat" id="dateformat" value="{DATE_FORMAT}" maxlength="64" class="inputbox narrow" style="margin-top: 3px;" />
+						</td>
+        </tr>
+				<!-- ENDIF -->
+
+        <tr>
+            <td align="center" colspan="2">
+								<input type="reset" value="{L_RESET}" name="reset" />
+								&nbsp;
+								<input type="submit" name="submit" value="{L_SUBMIT}" />
+						</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+		{S_HIDDEN_FIELDS}
+		{S_FORM_TOKEN}
+</form>
+
+<script type="text/javascript">
+// <![CDATA[
+	var date_format = '{A_DATE_FORMAT}';
+	var default_dateformat = '{A_DEFAULT_DATEFORMAT}';
+
+	function customDates()
+	{
+		var e = document.getElementById('dateoptions');
+
+		e.selectedIndex = e.length - 1;
+
+		// Loop and match date_format in menu
+		for (var i = 0; i < e.length; i++)
+		{
+			if (e.options[i].value == date_format)
+			{
+				e.selectedIndex = i;
+				break;
+			}
+		}
+
+		// Show/hide custom field
+		if (e.selectedIndex == e.length - 1)
+		{
+			phpbb.toggleDisplay('custom_date',1);
+		}
+		else
+		{
+			phpbb.toggleDisplay('custom_date',-1);
+		}
+	}
+
+	window.onload = customDates;
+// ]]>
+</script>
+
+<!-- INCLUDE ucp_footer.html -->

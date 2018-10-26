@@ -1,0 +1,67 @@
+<!-- grapevinified -->
+
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE pagination.html -->
+
+<form action='{S_MODE_ACTION}' method='get'>
+	<table cellspacing="0" id="member_list_full">
+		<thead>
+			<tr>
+				<th colspan="5">Member List</th>
+			</tr>
+		</thead>
+		<tr>
+			<th width="28%">Member Name</th>
+			<th width="14%">Group</th>
+			<th width="28%">Last Activity Date</th>
+			<th width="14%">Join Date</th>
+			<th width="8%">Posts</th>
+		</tr>
+
+		<!-- search bar -->
+		<tr>
+			<td colspan="5" class="c_head">Search by username: <select name='search_type'>
+					<option value='start'>Name starts with</option>
+					<option value='contains'>Name contains</option>
+				</select>
+				<input type="text" size='25' name="username" id="username" value="{USERNAME}" />
+			</td>
+		</tr>
+		<!-- end search bar -->
+
+		<!-- BEGIN memberrow -->
+			<tr class="<!-- IF memberrow.S_ROW_COUNT is even -->row2<!-- ELSE -->row1<!-- ENDIF -->">
+				<td>
+					{memberrow.USERNAME_FULL}
+				</td>
+				<td>{memberrow.RANK_TITLE}</td>
+				<td>{memberrow.LAST_ACTIVE}</td>
+				<!--<td>{memberrow.JOINED}</td>-->
+				<td>{{ memberrow.JOINED|date("m/d/Y") }}</td>
+				<td>{memberrow.POSTS}</td>
+			</tr>
+		<!-- END memberrow -->
+
+		<!-- sort by -->
+		<tr>
+			<td colspan='5' class='c_foot'>Displaying
+				<select name="search_group_id" id="search_group_id">{S_GROUP_SELECT}</select>
+				by
+
+				<select name="sk" id="sk">{S_SORT_OPTIONS}</select>
+				in
+
+				<select name="sd">{S_ORDER_SELECT}</select>
+				order
+
+				<input type="submit" name="submit" value="Submit" />
+				{S_FORM_TOKEN}
+		</tr>
+		<!-- end sort by -->
+
+	</table>
+</form>
+
+<!-- INCLUDE pagination.html -->
+
+<!-- INCLUDE overall_footer.html -->

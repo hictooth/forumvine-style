@@ -1,0 +1,194 @@
+<!-- grapevinified -->
+<!-- INCLUDE ucp_header.html -->
+
+<form id="postform" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+		<!-- IF S_EDIT_DRAFT -->
+				<!-- we want to edit this draft -->
+
+						<table class="posting" cellspacing="0">
+								<!-- table header -->
+								<thead>
+										<tr>
+												<!-- IF TOPIC_TITLE -->
+														<th colspan="2">Editing draft for {TOPIC_TITLE}</th>
+												<!-- ELSE -->
+														<th colspan="2">Editing draft in {FORUM_NAME}</th>
+												<!-- ENDIF -->
+										</tr>
+								</thead>
+								<!-- end table header -->
+
+								<input type="hidden" name="subject" id="subject" size="45" maxlength="<!-- IF S_NEW_MESSAGE -->120<!-- ELSE -->124<!-- ENDIF -->" tabindex="2" value="{SUBJECT}{DRAFT_SUBJECT}" class="inputbox autowidth" />
+
+								<tr>
+
+							      <!-- emojis pane -->
+							      <td id="c_emot" rowspan="2">
+								        <div id="emot_wrap">
+									          <h3>Clickable Emoticons</h3>
+									          <ul id="emot_list">
+										            <!-- IF S_SMILIES_ALLOWED and .smiley -->
+											        			<strong>{L_SMILIES}</strong>
+																		<br />
+											        			<!-- BEGIN smiley -->
+											                	<li onclick="insert_text('{smiley.A_SMILEY_CODE}', true); return false;"><img src="{smiley.SMILEY_IMG}" alt='{smiley.SMILEY_CODE}' title='{smiley.SMILEY_DESC}' /></li>
+											        			<!-- END smiley -->
+										        		<!-- ENDIF -->
+									          </ul>
+									          <!--wtf phpBB<a href="#" id="emot_end">Show All</a>-->
+								        </div>
+							      </td>
+							      <!-- end emojis pane -->
+
+
+
+							      <!-- bbcode buttons -->
+							      <!-- INCLUDE posting_buttons.html --> <!-- for the js -->
+							      <td id="c_bbcode">
+								        <button type="button" name="B" accesskey="b" onclick="bbstyle(0)"><strong>B</strong></button>
+								        <button type="button" name="I" accesskey="i" onclick="bbstyle(2)"><em>I</em></button>
+								        <button type="button" name="U" accesskey="u" onclick="bbstyle(4)"><u>U</u></button>
+								        <button type="button" name="S" accesskey="s" onclick="bbstyle(28)"><del>S</del></button>
+								        <button type="button" name="Big" accesskey="]" onclick="bbstyle(24)">Bigger</button>
+								        <button type="button" name="Small" accesskey="[" onclick="bbstyle(26)">Smaller</button>
+								        <button type="button" accesskey="q" name="Quote" onclick="bbstyle(6)">Quote</button>
+								        <button type="button" name="URL" accesskey="l" onclick="bbstyle(16)">URL</button>
+								        <button type="button" name="IMG" accesskey="m" onclick="bbstyle(14)">Image</button>
+								        <button type="button" name="Spolier" accesskey="" onclick="bbstyle(22)">Spoiler</button>
+								        <button type="button" name="List" onclick="bbstyle(10)">List</button>
+								        <!--<button type="button" name="Table" onmouseover="ZetaHelp('Table')" onclick="ZetaTable()">Table</button>-->
+								        <br />
+								        <input type="text" class="row1" name="helpbox" size="60" maxlength="120" style="font-size:.8em;border:0px" readonly="readonly" value="Select text and click a style to format the text" />
+								        <!--wtf phpBB<a href="http://forums.berksgrapevine.com/keys/?c=1" target="_blank">Full BBCode List</a>-->
+							      </td>
+							      <!-- end bbcode buttons -->
+						    </tr>
+
+
+								<!-- start post text field -->
+						    <tr>
+							      <td id="c_post">
+
+								        <!-- IF S_DISPLAY_PREVIEW -->
+									          <div id="c_post-close" title="Close Preview" style="float: right; position: relative; top: 2px; right: 11px; cursor: pointer;">[x]</div>
+									          <div id="c_post-preview">
+									            	{PREVIEW_MESSAGE}
+									          </div>
+								        <!-- ENDIF -->
+
+								        <div id="c_post-wrap">
+														<textarea <!-- IF S_UCP_ACTION and not S_PRIVMSGS and not S_EDIT_DRAFT -->name="signature" id="signature" style="height: 9em;"<!-- ELSE -->name="message" id="message"<!-- ENDIF --> cols='50' rows='20' tabindex='3'>{MESSAGE}{DRAFT_MESSAGE}{SIGNATURE}</textarea>
+									          <!--<div id="c_post-resize">
+										            <span onclick="postSize(1)">+</span>
+										            <span onclick="postSize(0)">&minus;</span>
+									          </div>-->
+								        </div>
+								        <!--<div style="display:none;">
+									          <input type="radio" name="zbpost" value="1" /> Cancel Post<br />
+									          <input type="radio" name="zbpost" value="0" checked="checked" /> Send Post
+								        </div>-->
+								      </td>
+							    </tr>
+							    <!-- end post text field -->
+						</table>
+
+
+						{S_HIDDEN_FIELDS}
+						<input type="submit" name="submit" value="{L_SAVE}" class="button1" />
+						{S_FORM_TOKEN}
+				<!-- end editing this draft -->
+		<!-- ELSE -->
+
+				<!-- IF .draftrow -->
+
+						<table class="posts" cellspacing="0">
+								<thead>
+										<tr>
+												<th colspan="6">Saved Drafts</th>
+										</tr>
+								</thead>
+								<tbody>
+										<tr>
+												<th class="c_cat-title">Draft Title</th>
+												<th class="c_cat-starter">Topic Title</th>
+												<th class="c_cat-replies">Saved At</th>
+												<th class="c_cat-views" colspan="2">Options</th>
+												<th class="c_cat-mark">&nbsp;</th>
+										</tr>
+
+										<!-- BEGIN draftrow -->
+
+												<!-- IF topicrow.S_ROW_COUNT % 2 == 0 -->
+														<tr class="row2">
+												<!-- ELSE -->
+														<tr class="row1">
+												<!-- ENDIF -->
+
+														<td class="c_cat-title">
+																<a href="{draftrow.U_VIEW_EDIT}">{draftrow.DRAFT_SUBJECT}</a>
+																<div class="description"></div>
+														</td>
+
+														<td class="c_cat-starter">
+																<!-- IF draftrow.S_LINK_TOPIC or draftrow.S_LINK_FORUM-->
+																		<a href="{draftrow.U_VIEW}">{draftrow.TITLE}</a>
+																<!-- ENDIF -->
+														</td>
+
+														<td class="c_cat-replies">
+																{draftrow.DATE}
+														</td>
+
+														<td class="c_cat-views">
+																<!-- IF draftrow.U_INSERT -->
+																		<a href="{draftrow.U_INSERT}">{L_LOAD_DRAFT}</a>
+																<!-- ENDIF -->
+														</td>
+
+														<td class="c_cat-views">
+																<a href="{draftrow.U_VIEW_EDIT}">{L_VIEW_EDIT}</a>
+														</td>
+
+														<td style="width: 1px;">
+																<input type="checkbox" name="d[{draftrow.DRAFT_ID}]" id="d{draftrow.DRAFT_ID}" />
+														</td>
+
+
+												</tr>
+
+										<!-- END draftrow -->
+
+								</tbody>
+						</table>
+
+
+
+				<!-- ELSE -->
+
+						<table cellspacing="0" id="error_box">
+								<thead>
+										<tr>
+												<th>Saved Drafts</th>
+										</tr>
+								</thead>
+								<tbody>
+										<tr class="generic">
+												<td>{L_NO_SAVED_DRAFTS}</td>
+										</tr>
+								</tbody>
+						</table>
+
+				<!-- ENDIF -->
+
+				<!-- IF .draftrow -->
+						<br>
+						<input class="button2" type="submit" name="delete" value="{L_DELETE_MARKED}" />
+						{S_FORM_TOKEN}
+				<!-- ENDIF -->
+
+		<!-- ENDIF -->
+
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

@@ -1,0 +1,76 @@
+<!-- grapevinified -->
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+		<!-- IF ERROR -->
+				<table cellspacing="0" id="error_box">
+						<thead>
+								<tr>
+										<th>Error:</th>
+								</tr>
+						</thead>
+						<tbody>
+								<tr class="generic">
+										<td>{ERROR}</td>
+								</tr>
+						</tbody>
+				</table>
+		<!-- ENDIF -->
+
+
+		<!-- IF .sessions -->
+
+				<table class="posts" cellspacing="0">
+						<thead>
+								<tr>
+										<th colspan="7">Login Keys</th>
+								</tr>
+						</thead>
+						<tbody>
+								<tr>
+										<th class="c_cat-title">{L_LOGIN_KEY}</th>
+										<th class="c_cat-starter">{L_IP}</th>
+										<th class="c_cat-replies">{L_LOGIN_TIME}</th>
+										<th class="c_cat-mark">&nbsp;</th>
+								</tr>
+
+								<!-- BEGIN sessions -->
+										<tr class="<!-- IF topicrow.S_ROW_COUNT % 2 == 0 -->row2<!-- ELSE -->row1<!-- ENDIF -->">
+												<td class="c_cat-title">{sessions.KEY}</td>
+												<td class="c_cat-starter">{sessions.IP}</td>
+												<td class="c_cat-replies">{sessions.LOGIN_TIME}</td>
+												<td class="c_cat-mark"><input type="checkbox" name="keys[]" value="{sessions.KEY}" id="{sessions.KEY}" /></td>
+										</tr>
+								<!-- END sessions -->
+
+								<tr>
+				            <td align="center" colspan="4">
+												{S_HIDDEN_FIELDS}
+												<input type="submit" name="submit" value="{L_DELETE_MARKED}" class="button2" />
+												{S_FORM_TOKEN}
+										</td>
+				        </tr>
+
+						</tbody>
+				</table>
+
+		<!-- ELSE -->
+
+				<table cellspacing="0" id="error_box">
+						<thead>
+								<tr>
+										<th>Login Keys</th>
+								</tr>
+						</thead>
+						<tbody>
+								<tr class="generic">
+										<td>{L_PROFILE_NO_AUTOLOGIN_KEYS}</td>
+								</tr>
+						</tbody>
+				</table>
+
+		<!-- ENDIF -->
+
+</form>
+<!-- INCLUDE ucp_footer.html -->

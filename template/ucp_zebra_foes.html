@@ -1,0 +1,70 @@
+<!-- grapevinified -->
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+		<!-- IF ERROR -->
+				<table cellspacing="0" id="error_box">
+						<thead>
+								<tr>
+										<th>Error:</th>
+								</tr>
+						</thead>
+						<tbody>
+								<tr class="generic">
+										<td>{ERROR}</td>
+								</tr>
+						</tbody>
+				</table>
+		<!-- ENDIF -->
+
+
+		<table cellspacing="0" id="edit_profile">
+				<thead>
+						<tr>
+								<th colspan="2">{L_TITLE}</th>
+						</tr>
+				</thead>
+				<tbody>
+						<tr>
+								<td colspan="2">
+										{L_FOES_EXPLAIN}
+								</td>
+						</tr>
+
+						<tr>
+								<td class="c_desc">{L_YOUR_FOES}{L_COLON} <small>{L_ADD_FOES_EXPLAIN}</small></td>
+								<td>
+										<!-- IF S_USERNAME_OPTIONS -->
+											<select name="usernames[]" id="usernames" multiple="multiple" size="5" style="width: 98%;">{S_USERNAME_OPTIONS}</select>
+										<!-- ELSE -->
+											<strong>{L_NO_FOES}</strong>
+										<!-- ENDIF -->
+								</td>
+						</tr>
+
+						<tr>
+								<td class="c_desc">{L_ADD_FRIENDS}{L_COLON} <small>{L_YOUR_FOES_EXPLAIN}</small></td>
+								<td>
+										<textarea name="add" id="add" rows="3" cols="30" class="inputbox">{USERNAMES}</textarea>
+										<br>
+										<strong><a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;">{L_FIND_USERNAME}</a></strong>
+								</td>
+						</tr>
+
+						<tr>
+								<td colspan="2">
+										<input type="reset" value="{L_RESET}" name="reset" class="button2" />
+										&nbsp;
+										<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+								</td>
+						</tr>
+				</tbody>
+		</table>
+
+
+		{S_HIDDEN_FIELDS}
+		{S_FORM_TOKEN}
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

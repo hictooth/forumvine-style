@@ -1,0 +1,33 @@
+<!-- grapevinified -->
+<!-- IF .avatar_local_cats -->
+		<tr>
+				<td style="width: 100px;"{L_AVATAR_CATEGORY}></td>
+				<td>
+					<select name="avatar_local_cat" id="category">
+							<!-- BEGIN avatar_local_cats -->
+									<option value="{avatar_local_cats.NAME}"<!-- IF avatar_local_cats.SELECTED --> selected="selected"<!-- ENDIF -->>{avatar_local_cats.NAME}</option>
+							<!-- END avatar_local_cats -->
+					</select>
+				</td>
+		</tr>
+
+		<tr>
+				<td colspan="2">
+						<input type="submit" value="{L_GO}" name="avatar_local_go" />
+				</td>
+		</tr>
+
+		<!-- BEGIN avatar_local_row -->
+				<!-- BEGIN avatar_local_col -->
+						<label for="av-{avatar_local_row.S_ROW_COUNT}-{avatar_local_row.avatar_local_col.S_ROW_COUNT}">
+								<img src="{avatar_local_row.avatar_local_col.AVATAR_IMAGE}" alt="" />
+								<br />
+								<input type="radio" name="avatar_local_file" id="av-{avatar_local_row.S_ROW_COUNT}-{avatar_local_row.avatar_local_col.S_ROW_COUNT}" value="{avatar_local_row.avatar_local_col.AVATAR_FILE}"<!-- IF avatar_local_row.avatar_local_col.CHECKED --> checked="checked"<!-- ENDIF --> />
+						</label>
+				<!-- END avatar_local_col -->
+		<!-- END avatar_local_row -->
+<!-- ELSE -->
+		<tr>
+				<td><strong>{L_NO_AVATARS}</strong></td>
+		</tr>
+<!-- ENDIF -->

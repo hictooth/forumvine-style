@@ -1,0 +1,121 @@
+<!-- grapevinified -->
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+		<!-- IF S_NO_DISPLAY_BOOKMARKS -->
+				<table cellspacing="0" id="error_box">
+						<thead>
+								<tr>
+										<th>Bookmarked Topics</th>
+								</tr>
+						</thead>
+						<tbody>
+								<tr class="generic">
+										<td>{L_BOOKMARKS_DISABLED}</td>
+								</tr>
+						</tbody>
+				</table>
+		<!-- ELSE -->
+
+				<!-- IF .topicrow -->
+
+						<table class="posts" cellspacing="0">
+								<thead>
+										<tr>
+												<th colspan="7">Bookmarked Topics</th>
+										</tr>
+								</thead>
+								<tbody>
+										<tr>
+												<th class="c_cat-mark">&nbsp;</th>
+												<th class="c_cat-title">Title</th>
+												<th class="c_cat-starter">Topic Starter</th>
+												<th class="c_cat-replies">Replies</th>
+												<th class="c_cat-views">Views</th>
+												<th class="c_cat-lastpost">Topic Info</th>
+												<th class="c_cat-mark">&nbsp;</th>
+										</tr>
+
+
+										<!-- BEGIN topicrow -->
+
+												<!-- IF topicrow.S_ROW_COUNT % 2 == 0 -->
+														<tr class="row2 newreplies">
+												<!-- ELSE -->
+														<tr class="row1 newreplies">
+												<!-- ENDIF -->
+
+												<td class="c_cat-mark">
+														<!-- IF topicrow.S_HAS_POLL -->
+																<i class="fa fa-bar-chart-o fa-lg" style="color: #688b6a" title="Poll"></i>
+														<!-- ELSEIF topicrow.S_TOPIC_LOCKED -->
+																<i class="fa fa-lock fa-2x" style="color: #688b6a" alt="Locked"></i>
+														<!-- ELSEIF topicrow.S_UNREAD_TOPIC -->
+																<!-- IF topicrow.REPLIES > 25 -->
+																		<i class="fa fa-star fa-lg" style="color: #688b6a" title="Hot Topic"></i>
+																<!-- ELSE -->
+																		<i class="fa fa-circle fa-lg" style="color: #688b6a" title="Unread Posts"></i>
+																<!-- ENDIF -->
+														<!-- ELSE -->
+																<!-- IF topicrow.REPLIES > 25 -->
+																		<i class="fa fa-star-o fa-lg" style="color: #688b6a" title="Hot Topic (No new posts)"></i>
+																<!-- ELSE -->
+																		<i class="fa fa-circle-o fa-lg" style="color: #688b6a" title="No Unread Posts"></i>
+																<!-- ENDIF -->
+														<!-- ENDIF -->
+												</td>
+												<td class="c_cat-title">
+														<a href="{topicrow.U_NEWEST_POST}" title="Start Date {topicrow.FIRST_POST_TIME}">{topicrow.TOPIC_TITLE}</a>
+														<div class="description"></div>
+												</td>
+
+												<td class="c_cat-starter">
+														{topicrow.TOPIC_AUTHOR_FULL}
+												</td>
+												<td class="c_cat-replies">
+														{topicrow.REPLIES}
+												</td>
+												<td class="c_cat-views">
+														{topicrow.VIEWS}
+												</td>
+												<td class="c_cat-lastpost">
+														<div class="t_lastpostdate">{topicrow.LAST_POST_TIME}</div>
+														Last Post By: {topicrow.LAST_POST_AUTHOR_FULL}
+												</td>
+												<td style="width: 1px;"><input type="checkbox" name="t[{topicrow.TOPIC_ID}]" id="t{topicrow.TOPIC_ID}" /></td>
+										</tr>
+
+									<!-- END topicrow -->
+
+								</tbody>
+						</table>
+
+				<!-- ELSE -->
+
+						<table cellspacing="0" id="error_box">
+						    <thead>
+						        <tr>
+						            <th>Bookmarked Topics</th>
+						        </tr>
+						    </thead>
+						    <tbody>
+						        <tr class="generic">
+						            <td>{L_NO_BOOKMARKS}</td>
+						        </tr>
+						    </tbody>
+						</table>
+
+				<!-- ENDIF -->
+
+		<!-- ENDIF -->
+
+
+		<!-- IF .topicrow and not S_NO_DISPLAY_BOOKMARKS -->
+				</br>
+				<input type="submit" name="unbookmark" value="{L_REMOVE_BOOKMARK_MARKED}" class="button2" />
+				{S_FORM_TOKEN}
+		<!-- ENDIF -->
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

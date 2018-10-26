@@ -1,0 +1,79 @@
+<!-- grapevinified -->
+<!-- INCLUDE overall_header.html -->
+
+<form method="post" action="{S_REPORT_ACTION}" id="report">
+
+		<!-- IF ERROR -->
+				<table cellspacing="0" id="error_box">
+						<thead>
+								<tr>
+										<th>Error:</th>
+								</tr>
+						</thead>
+						<tbody>
+								<tr class="generic">
+										<td>{ERROR}</td>
+								</tr>
+						</tbody>
+				</table>
+				<br/>
+		<!-- ENDIF -->
+
+		<table>
+				<thead>
+						<tr>
+								<th colspan="100%"><!-- IF S_REPORT_POST -->{L_REPORT_POST}<!-- ELSE -->{L_REPORT_MESSAGE}<!-- ENDIF --></th>
+						</tr>
+				</thead>
+				<tbody>
+						<tr>
+								<td colspan="100%"><!-- IF S_REPORT_POST -->{L_REPORT_POST_EXPLAIN}<!-- ELSE -->{L_REPORT_MESSAGE_EXPLAIN}<!-- ENDIF --></td>
+						</tr>
+
+						<tr>
+								<td class="c_desc">{L_REASON}</td>
+								<td>
+										<select name="reason_id" id="reason_id" class="full">
+												<!-- BEGIN reason -->
+														<option value="{reason.ID}"<!-- IF reason.S_SELECTED --> selected="selected"<!-- ENDIF -->>{reason.DESCRIPTION}</option>
+												<!-- END reason -->
+										</select>
+								</td>
+						</tr>
+
+						<!-- IF S_CAN_NOTIFY -->
+								<tr>
+										<td class="c_desc">{L_REPORT_NOTIFY}</td>
+										<td>
+												<label for="notify1"><input type="radio" name="notify" id="notify1" value="1" <!-- IF not S_NOTIFY -->checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+												<label for="notify0"><input type="radio" name="notify" id="notify0" value="0" <!-- IF S_NOTIFY -->checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+										</td>
+								</tr>
+						<!-- ENDIF -->
+
+						<tr>
+								<td class="c_desc">{L_MORE_INFO} <small>{L_CAN_LEAVE_BLANK}</small></td>
+								<td>
+										<textarea name="report_text" id="report_text" rows="10" cols="76" class="inputbox">{REPORT_TEXT}</textarea>
+								</td>
+						</tr>
+
+						<!-- IF CAPTCHA_TEMPLATE -->
+								<tr>
+										<td colspan="100%"><!-- INCLUDE {CAPTCHA_TEMPLATE} --></td>
+								</tr>
+						<!-- ENDIF -->
+
+						<tr>
+								<td colspan="100%">
+									<input type="submit" name="submit" class="button1" value="{L_SUBMIT}" />
+									&nbsp;
+									<input type="submit" name="cancel" class="button2" value="{L_CANCEL}" />
+								</td>
+						</tr>
+				</tbody>
+		</table>
+
+		{S_FORM_TOKEN}
+</form>
+<!-- INCLUDE overall_footer.html -->

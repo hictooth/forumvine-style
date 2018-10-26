@@ -1,0 +1,126 @@
+<!-- grapevinified -->
+<!-- INCLUDE overall_header.html -->
+
+<script type="text/javascript">
+// <![CDATA[
+	/**
+	* Change language
+	*/
+	function change_language(lang_iso)
+	{
+		document.cookie = '{COOKIE_NAME}_lang=' + lang_iso + '; path={COOKIE_PATH}';
+		document.forms['register'].change_lang.value = lang_iso;
+		document.forms['register'].submit.click();
+	}
+// ]]>
+</script>
+
+
+<form id="register" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+	<!-- IF ERROR -->
+			<table cellspacing="0" id="error_box">
+					<thead>
+							<tr>
+									<th>Error:</th>
+							</tr>
+					</thead>
+					<tbody>
+							<tr class="generic">
+									<td>{ERROR}</td>
+							</tr>
+					</tbody>
+			</table>
+	<!-- ENDIF -->
+
+	<table>
+		<thead>
+			<tr>
+				<th colspan="100%">{SITENAME} - {L_REGISTRATION}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- IF L_REG_COND -->
+				<tr>
+					<th colspan="100%">{L_REG_COND}</th>
+				</tr>
+			<!-- ENDIF -->
+
+			<tr>
+				<td class="c_desc">{L_USERNAME} <small>{L_USERNAME_EXPLAIN}</small></td>
+				<td><input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" class="inputbox autowidth" title="{L_USERNAME}" /></td>
+			</tr>
+
+			<tr>
+				<td class="c_desc">{L_EMAIL_ADDRESS}</td>
+				<td><input type="email" tabindex="2" name="email" id="email" size="25" maxlength="100" value="{EMAIL}" class="inputbox autowidth" title="{L_EMAIL_ADDRESS}" autocomplete="off" /></td>
+			</tr>
+
+			<tr>
+				<td class="c_desc">{L_PASSWORD} <small>{L_PASSWORD_EXPLAIN}</small></td>
+				<td><input type="password" tabindex="4" name="new_password" id="new_password" size="25" value="{PASSWORD}" class="inputbox autowidth" title="{L_NEW_PASSWORD}" autocomplete="off" /></td>
+			</tr>
+
+			<tr>
+				<td class="c_desc">{L_CONFIRM_PASSWORD}</td>
+				<td><input type="password"  tabindex="5" name="password_confirm" id="password_confirm" size="25" value="{PASSWORD_CONFIRM}" class="inputbox autowidth" title="{L_CONFIRM_PASSWORD}" autocomplete="off" /></td>
+			</tr>
+
+			<tr>
+				<th colspan="100%"></th>
+			</tr>
+
+			<tr>
+				<td class="c_desc">{L_LANGUAGE}</td>
+				<td><select name="lang" id="lang" onchange="change_language(this.value); return false;" tabindex="6" title="{L_LANGUAGE}">{S_LANG_OPTIONS}</select></td>
+			</tr>
+
+			<!-- IF .profile_fields -->
+				<tr>
+					<th colspan="100%">{L_ITEMS_REQUIRED}</th>
+				</tr>
+
+				<!-- BEGIN profile_fields -->
+					<td class="c_desc">
+						{profile_fields.LANG_NAME}
+						<!-- IF profile_fields.S_REQUIRED --> *<!-- ENDIF -->
+						<!-- IF profile_fields.LANG_EXPLAIN --><small>{profile_fields.LANG_EXPLAIN}</small><!-- ENDIF -->
+						<!-- IF profile_fields.ERROR --><br /><span class="error">{profile_fields.ERROR}</span><!-- ENDIF --></dt>
+					</td>
+					<tr>{profile_fields.FIELD}</td>
+				<!-- END profile_fields -->
+			<!-- ENDIF -->
+
+			<!-- IF CAPTCHA_TEMPLATE -->
+				<tr>
+					<td colspan="100%">
+						<!-- DEFINE $CAPTCHA_TAB_INDEX = 8 -->
+						<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+					</td>
+				</tr>
+			<!-- ENDIF -->
+
+			<!-- IF S_COPPA -->
+				<tr>
+					<td colspan="100%">
+						<h4>{L_COPPA_COMPLIANCE}</h4>
+						<p>{L_COPPA_EXPLAIN}</p>
+					</td>
+				</tr>
+			<!-- ENDIF -->
+
+			<tr>
+				<td colspan="100%">
+					<input type="reset" value="{L_RESET}" name="reset" class="button2" />
+					&nbsp;
+					<input type="submit" tabindex="9" name="submit" id="submit" value="{L_SUBMIT}" class="button1 default-submit-action" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	{S_FORM_TOKEN}
+	{S_HIDDEN_FIELDS}
+</form>
+
+<!-- INCLUDE overall_footer.html -->

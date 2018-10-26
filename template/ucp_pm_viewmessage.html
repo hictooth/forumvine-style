@@ -1,0 +1,78 @@
+<!-- grapevinified -->
+<!-- INCLUDE ucp_header.html -->
+<!-- INCLUDE ucp_pm_message_header.html -->
+
+		<!-- IF not S_DISPLAY_HISTORY -->
+				<!-- this conversation only has one message in it -->
+
+				<table cellspacing="0" style="margin:1em 0;" id="conversation">
+						<thead>
+								<tr>
+										<th colspan="4">Full Conversation: {SUBJECT}</th>
+								</tr>
+						</thead>
+				    <tbody>
+				        <tr>
+				            <td colspan="4" class="c_postinfo">
+				                <span class="left"><big>{MESSAGE_AUTHOR_FULL}</big> · {L_SENT_AT}</span>
+				                <span class="right">
+														<!-- IF U_EDIT -->
+																<a href="{U_EDIT}" title="{L_POST_EDIT_PM}" class="button button-icon-only">
+																		<span class="post_button">
+																				<i class="fa fa-pencil"></i>
+																				&nbsp;&nbsp;{L_POST_EDIT_PM}
+																		</span>
+																</a>
+																&nbsp;
+														<!-- ENDIF -->
+														<!-- IF U_DELETE -->
+																<a href="{U_DELETE}" title="{L_DELETE_MESSAGE}" class="button button-icon-only">
+																		<span class="post_button report_button">
+																				<i class="fa fa-times"></i>
+																				&nbsp;&nbsp;{L_DELETE_MESSAGE}
+																		</span>
+																</a>
+																&nbsp;
+														<!-- ENDIF -->
+														<!-- IF U_REPORT -->
+																<a href="{U_REPORT}" title="{L_REPORT_PM}" class="button button-icon-only">
+																		<span class="post_button report_button">
+																				<i class="fa fa-exclamation"></i>
+																				&nbsp;&nbsp;{L_REPORT_PM}
+																		</span>
+																</a>
+																&nbsp;
+														<!-- ENDIF -->
+														<!-- IF U_QUOTE -->
+																<a href="{U_QUOTE}" title="{L_POST_QUOTE_PM}" class="button button-icon-only">
+																		<span class="post_button">
+																				<i class="fa fa-quote-left"></i>
+																				&nbsp;&nbsp;{L_POST_QUOTE_PM}
+																		</span>
+																</a>
+														<!-- ENDIF -->
+				                </span>
+				            </td>
+				        </tr>
+				        <tr>
+				            <td colspan="4" class="c_post">
+				                {MESSAGE}
+				            </td>
+				        </tr>
+
+				        <tr>
+				            <td class="c_foot" colspan="4"> </td>
+				        </tr>
+				    </tbody>
+				</table>
+
+		<!-- ELSE -->
+
+				<!-- show the message history -->
+				<!-- INCLUDE ucp_pm_history.html -->
+
+		<!-- ENDIF -->
+
+
+<!-- INCLUDE ucp_pm_message_footer.html -->
+<!-- INCLUDE ucp_footer.html -->

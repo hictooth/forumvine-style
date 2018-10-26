@@ -1,0 +1,99 @@
+<!-- grapevinified -->
+
+<form id="viewfolder" method="post" action="{S_PM_ACTION}">
+
+		<!-- IF FOLDER_STATUS and FOLDER_MAX_MESSAGES neq 0 -->
+				<table cellspacing="0">
+						<thead>
+								<tr>
+										<th>{L_TITLE}<!-- IF CUR_FOLDER_NAME -->{L_COLON} {CUR_FOLDER_NAME}<!-- ENDIF --></th>
+								</tr>
+						</thead>
+						<tbody>
+								<!-- folder "full" status -->
+								<tr>
+										<td>{FOLDER_STATUS}</td>
+								</tr>
+
+								<!-- action buttons -->
+								<tr>
+										<td style="padding-bottom: 10px; padding-top: 10px;">
+												<span class="left">
+														<!-- IF TOTAL_MESSAGES or S_VIEW_MESSAGE -->
+																<!-- IF S_VIEW_MESSAGE -->
+																		<a class="arrow-{S_CONTENT_FLOW_BEGIN}" href="{U_CURRENT_FOLDER}">
+																				<i class="icon fa fa-angle-{S_CONTENT_FLOW_BEGIN} fa-fw icon-black" aria-hidden="true"></i><span>{L_RETURN_TO_FOLDER}</span>
+																		</a>
+																<!-- ELSEIF FOLDER_CUR_MESSAGES neq 0 -->
+																		<!-- IF U_MARK_ALL -->
+																				<a href="{U_MARK_ALL}" class="mark">{L_PM_MARK_ALL_READ}</a>
+																				&bull;
+																		<!-- ENDIF -->
+																		{TOTAL_MESSAGES}
+																		&bull;
+																		{PAGE_NUMBER}
+																<!-- ENDIF -->
+														<!-- ENDIF -->
+												</span>
+
+												<span class="right">
+														<!-- IF U_POST_REPLY_PM or U_POST_NEW_TOPIC or U_FORWARD_PM -->
+
+																<!-- IF U_POST_REPLY_PM -->
+																		<!-- reply button -->
+																			<a href='{U_POST_REPLY_PM}' rel='nofollow'>
+																					<span class="reply_button">
+																							<i class="fa fa-reply"></i>
+																							&nbsp;&nbsp;{L_BUTTON_PM_REPLY}
+																					</span>
+																			</a>
+																		<!-- end reply button -->
+																		&nbsp;
+																<!-- ENDIF -->
+
+																<!-- IF U_POST_NEW_TOPIC -->
+																		<a href='{U_POST_NEW_TOPIC}' rel='nofollow'>
+																				<span class="reply_button">
+																						<i class="fa fa-pencil"></i>
+																						&nbsp;&nbsp;{L_BUTTON_PM_NEW}
+																				</span>
+																		</a>
+																		&nbsp;
+																<!-- ENDIF -->
+
+																<!-- IF U_FORWARD_PM -->
+																		<a href='{U_FORWARD_PM}' rel='nofollow'>
+																				<span class="reply_button">
+																						<i class="fa fa-mail-forward"></i>
+																						&nbsp;&nbsp;{L_BUTTON_PM_FORWARD}
+																				</span>
+																		</a>
+																		&nbsp;
+																<!-- ENDIF -->
+
+																<!-- IF U_POST_REPLY_PM and S_PM_RECIPIENTS gt 1 -->
+																		<a href='{U_POST_REPLY_ALL}' rel='nofollow'>
+																				<span class="reply_button">
+																						<i class="fa fa-pencil"></i>
+																						&nbsp;&nbsp;{L_BUTTON_PM_REPLY_ALL}
+																				</span>
+																		</a>
+																		&nbsp;
+																<!-- ENDIF -->
+
+																<!-- IF U_PRINT_PM -->
+																		<a href='{U_PRINT_PM}' rel='nofollow'>
+																				<span class="reply_button">
+																						<i class="fa fa-print"></i>
+																						&nbsp;&nbsp;{L_PRINT_PM}
+																				</span>
+																		</a>
+																<!-- ENDIF -->
+														<!-- ENDIF -->
+												</span>
+										</td>
+								</tr>
+						</tbody>
+				</table>
+				<br>
+		<!-- ENDIF -->

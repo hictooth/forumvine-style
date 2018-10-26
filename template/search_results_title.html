@@ -1,0 +1,48 @@
+<!-- grapevinified -->
+
+<table class="posts" id="search_results_topics" cellspacing="0">
+  <thead>
+    <tr>
+      <th colspan="5">Searching: dragons</th>
+    </tr>
+  </thead>
+  <table class="forums" cellspacing="0">
+    <tr>
+      <th class="c_cat-title">Title</th>
+      <th class="c_cat-title">Forum</th>
+      <th class="c_cat-replies">Replies</th>
+      <th class="c_cat-views">Views</th>
+      <th class="c_cat-lastpost">Topic Info</th>
+    </tr>
+
+    <!-- IF .searchresults -->
+      <!-- BEGIN searchresults -->
+        <tr class="<!-- IF memberrow.S_ROW_COUNT is even -->row2<!-- ELSE -->row1<!-- ENDIF -->">
+          <td class="c_cat-title">
+            <a href="{{ searchresults.U_NEWEST_POST }}">{{ searchresults.TOPIC_TITLE }}</a>
+            <div class="description">
+                <!-- IF searchresults.TOPIC_DESC -->
+                    {searchresults.TOPIC_DESC}
+                <!-- ELSEIF topicrow.TOPIC_DESC -->
+                    {topicrow.TOPIC_DESC}
+                <!-- ENDIF -->
+            </div>
+          </td>
+          <td class="c_cat-title">{{ searchresults.FORUM_TITLE }}</td>
+          <td class="c_cat-replies">
+            {{ searchresults.TOPIC_REPLIES }}
+          </td>
+          <td class="c_cat-views">
+            {{ searchresults.TOPIC_VIEWS }}
+          </td>
+          <td class="c_cat-lastpost">
+            <div class="t_lastpostdate">{{ searchresults.POST_DATE }}</div>
+            Last Post By: {{ searchresults.LAST_POST_AUTHOR_FULL }}
+          </td>
+        </tr>
+      <!-- END searchresults -->
+    <!-- ENDIF -->
+
+
+  </table>
+</table>

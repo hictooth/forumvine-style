@@ -1,0 +1,20 @@
+<!-- grapevinified -->
+
+<!-- IF TOTAL_PAGES > 1 -->
+	<ul class='cat-pages'>
+		<li class="cat-pageshead">Pages:</li>
+		<!-- BEGIN pagination -->
+			<!-- IF pagination.S_IS_PREV -->
+				<!--<li><a href='{pagination.PAGE_URL}' rel="prev">{pagination.PAGE_NUMBER}</a></li>-->
+			<!-- ELSEIF pagination.S_IS_CURRENT -->
+				<li><span>{pagination.PAGE_NUMBER}</span></li>
+			<!-- ELSEIF pagination.S_IS_ELLIPSIS -->
+				<li class="cat-pagesjump" onclick="spawnJump(this,6,1,board_url);"><i>&hellip;</i></li>
+			<!-- ELSEIF pagination.S_IS_NEXT -->
+				<!--<li><a href='{pagination.PAGE_URL}' rel="next">{pagination.PAGE_NUMBER}</a></li>-->
+			<!-- ELSE -->
+				<li><a class="button" href="{pagination.PAGE_URL}" role="button">{pagination.PAGE_NUMBER}</a></li>
+			<!-- ENDIF -->
+		<!-- END pagination -->
+	</ul>
+<!-- ENDIF -->

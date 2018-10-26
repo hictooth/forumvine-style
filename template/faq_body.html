@@ -1,0 +1,67 @@
+<!-- grapevinified -->
+<!-- INCLUDE overall_header.html -->
+
+<!-- links table -->
+<table>
+		<thead>
+				<tr>
+						<th colspan="2" style="text-align: center;">{L_FAQ_TITLE}</th>
+				</tr>
+		</thead>
+		<tbody>
+				<!-- BEGIN faq_block -->
+
+						<!-- table row and column tags -->
+						<!-- IF faq_block.S_ROW_COUNT % 2 == 0 -->
+								<!-- IF not faq_block.S_FIRST_ROW -->
+												</td>
+										</tr>
+								<!-- ENDIF -->
+								<tr>
+										<td>
+						<!-- ELSE -->
+								</td>
+								<!-- IF not faq_block.S_LAST_ROW -->
+										<td>
+								<!-- ENDIF -->
+						<!-- ENDIF -->
+						<!-- end table row and column tags -->
+
+						<h4>{faq_block.BLOCK_TITLE}</h4>
+						<ul>
+								<!-- BEGIN faq_row -->
+										<li><a href="#f{faq_block.S_ROW_COUNT}r{faq_block.faq_row.S_ROW_COUNT}">{faq_block.faq_row.FAQ_QUESTION}</a></li>
+								<!-- END faq_row -->
+						</ul>
+
+				<!-- END faq_block -->
+
+			</td></tr>
+
+		</tbody>
+</table>
+
+
+<!-- BEGIN faq_block -->
+		<br/>
+		<table>
+				<thead>
+						<tr>
+								<th>{faq_block.BLOCK_TITLE}</th>
+						</tr>
+				</thead>
+				<tbody>
+						<!-- BEGIN faq_row -->
+								<tr>
+										<td>
+												<h4 id="f{faq_block.S_ROW_COUNT}r{faq_block.faq_row.S_ROW_COUNT}">{faq_block.faq_row.FAQ_QUESTION}</h4>
+												<p>{faq_block.faq_row.FAQ_ANSWER}</p>
+										</td>
+								</tr>
+						<!-- END faq_row -->
+				</tbody>
+		</table>
+<!-- END faq_block -->
+
+
+<!-- INCLUDE overall_footer.html -->
