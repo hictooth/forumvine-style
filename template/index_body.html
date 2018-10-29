@@ -9,6 +9,37 @@
 <!-- IF not S_USER_LOGGED_IN -->
     <!-- we're not logged in, show the login form -->
 
+    <!-- IF LOGIN_ERROR -->
+		<table cellspacing="0" id="error_box">
+			<thead>
+				<tr>
+					<th>Error:</th>
+				</tr>
+			</thead>
+			<tbody>
+                <tr class="generic">
+                    <td>If you have trouble logging into the new forums, please either comment on the <a href="/dragon-chat/">Dragon Chat</a>, message <a href="https://twitter.com/hictooth/">@hictooth</a> on Twitter, or email <b>hictooth@hictooth.com</b>.</td>
+                </tr>
+				<tr class="generic">
+					<td>{LOGIN_ERROR}</td>
+				</tr>
+			</tbody>
+		</table>
+    <!-- ELSE -->
+        <table cellspacing="0" id="error_box">
+			<thead>
+				<tr>
+					<th>Notice:</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="generic">
+					<td>If you have trouble logging into the new forums, please either comment on the <a href="/dragon-chat/">Dragon Chat</a>, message <a href="https://twitter.com/hictooth/">@hictooth</a> on Twitter, or email <b>hictooth@hictooth.com</b>.</td>
+				</tr>
+			</tbody>
+		</table>
+    <!-- ENDIF -->
+
     <!-- login form -->
     <table cellspacing="0" id="welcome_box">
     	<tr>
