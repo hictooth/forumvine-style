@@ -1,3 +1,15 @@
+/* admins and mods bold in the stats legend */
+#stats_legend a[style*="color: #000000"],
+#stats_legend a[style*="color:#000000"],
+#stats_legend a[style*="color: #FF0000"],
+#stats_legend a[style*="color:#FF0000"],
+a.username-coloured[style*="color: #000000;"],
+a.username-coloured[style*="color:#000000;"],
+a.username-coloured[style*="color: #FF0000;"],
+a.username-coloured[style*="color:#FF0000;"] {
+  font-weight: bold;
+}
+
 html,body {
 color:#000;
 font-family:"Helvetica", "Arial", "Bitstream Vera Sans", "Verdana", sans-serif;
