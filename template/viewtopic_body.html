@@ -128,14 +128,13 @@
 
 	<!-- BEGIN postrow -->
 	
-	<!-- IF postrow.S_FIRST_UNREAD -->
-		<!-- anchor for first unread post -->
-		<a id="unread" class="anchor"></a>
-	<!-- ENDIF -->
-	
-	<!-- start first post! -->
 	<tr id="post-{postrow.POST_ID}">
 		<td class="c_username">
+			
+			<!-- IF postrow.S_FIRST_UNREAD -->
+				<!-- anchor for first unread post -->
+				<a id="unread" class="anchor"></a>
+			<!-- ENDIF -->
 
 			<a href='{postrow.U_POST_AUTHOR}' class='member'>
 				<span style="color:{postrow.POST_AUTHOR_COLOUR}">
@@ -288,7 +287,6 @@
 	<tr>
 		<th colspan="2" class="post_sep">&nbsp;</th>
 	</tr>
-	<!-- end first post -->
 	<!-- END postrow -->
 
 	<!-- IF S_DISPLAY_ONLINE_LIST and U_VIEWONLINE -->
