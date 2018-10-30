@@ -15,30 +15,31 @@
 
 		<!-- IF S_REGISTERED_USER -->
 
-			<!-- IF U_ACP -->
+		<!-- S_REGISTERED_USER and IF U_ACP -->
 			<li id="menu_acp">
 				<a href='{U_ACP}' class='modal'>
 					<i class="fa fa-key"></i>
 					&nbsp;&nbsp; Admin CP</a>
 				</li>
-			<!-- ENDIF -->
+		<!-- ENDIF -->
 
-			<!-- IF U_MCP -->
+		<!-- IF S_REGISTERED_USER and U_MCP -->
 			<li id="menu_rcp">
 				<a href='{U_MODCP}'>
 					<i class="fa fa-exclamation-triangle"></i>
 					&nbsp;&nbsp; Report CP
 				</a>
 			</li>
-			<!-- ENDIF -->
+		<!-- ENDIF -->
 
-			<li id="menu_pm">
-				<a href="/dragon-chat">
-					<i class="fa fa-comment"></i>
-					Dragon Chat
-				</a>
-			</li>
+		<li id="menu_pm">
+			<a href="/dragon-chat">
+				<i class="fa fa-comment"></i>
+				Dragon Chat
+			</a>
+		</li>
 
+		<!-- IF S_REGISTERED_USER -->
 			<li id="menu_pm">
 				<a href="{U_SEARCH}" style="width: 6em;">
 					<i class="fa fa-search"></i>
