@@ -1215,6 +1215,11 @@ margin:auto;
 text-align:center;
 }
 
+img.avatar {
+  max-height: 150px;
+  max-width: 150px;
+}
+
 .av_wrap {
 overflow:hidden;
 text-align:center;
