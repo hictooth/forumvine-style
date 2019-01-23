@@ -3,6 +3,22 @@
 
 <form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
 
+	<!-- IF ERROR -->
+			<table cellspacing="0" id="error_box">
+					<thead>
+							<tr>
+									<th>Error:</th>
+							</tr>
+					</thead>
+					<tbody>
+							<tr class="generic">
+									<td>{ERROR}</td>
+							</tr>
+					</tbody>
+			</table>
+			<br/>
+	<!-- ENDIF -->
+
 	<table cellspacing="0" id="edit_profile">
 			<thead>
 					<tr>
