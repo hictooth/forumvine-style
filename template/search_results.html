@@ -3,6 +3,21 @@
 
 <!-- INCLUDE pagination.html -->
 
+<!-- IF not searchresults -->
+	<table cellspacing="0" id="error_box">
+		<thead>
+			<tr>
+				<th>Error:</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="generic">
+				<td>{L_NO_SEARCH_RESULTS}</td>
+			</tr>
+		</tbody>
+	</table>
+<!-- ENDIF -->
+
 {% if 'sf=titleonly' in _context.BASE_URL or 'search_id=active_topics' in _context.BASE_URL or 'sr=topics' in _context.BASE_URL %}
 <!-- INCLUDE search_results_title.html -->
 {% else %}
