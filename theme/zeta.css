@@ -1284,7 +1284,7 @@ list-style-type:square;
 margin-left:10px;
 }
 
-.c_post img,#topic_review img {
+.c_post img,#topic_review,.search_results img {
 max-width:90%;
 }
 
