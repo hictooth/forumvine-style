@@ -89,7 +89,7 @@
 	<tr>
 		<th colspan="2">
 			<span class="left">
-				Topic Started: {{ postrow[0].POST_DATE }} <!--(1,253 Views)-->
+				Topic Started: {{ postrow[0].POST_DATE }} ({TOPIC_VIEWS} Views)
 			</span>
 			<!-- IF .quickmod -->
 				<!-- BEGIN quickmod -->
@@ -127,10 +127,10 @@
 	<!-- end topic header -->
 
 	<!-- BEGIN postrow -->
-	
+
 	<tr id="p{postrow.POST_ID}">
 		<td class="c_username">
-			
+
 			<!-- IF postrow.S_FIRST_UNREAD -->
 				<!-- anchor for first unread post -->
 				<a id="unread" class="anchor"></a>
