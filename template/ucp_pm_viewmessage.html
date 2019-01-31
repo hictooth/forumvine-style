@@ -2,6 +2,19 @@
 <!-- INCLUDE ucp_header.html -->
 <!-- INCLUDE ucp_pm_message_header.html -->
 
+		<!-- IF U_POST_REPLY_PM -->
+				<!-- reply button -->
+				<div class="topic-buttons">
+						<a href='{U_POST_REPLY_PM}' rel='nofollow'>
+								<span class="reply_button">
+										<i class="fa fa-reply"></i>
+										&nbsp;&nbsp;Add Reply
+								</span>
+						</a>
+				</div>
+				<!-- end reply button -->
+		<!-- ENDIF -->
+
 		<!-- IF not S_DISPLAY_HISTORY -->
 				<!-- this conversation only has one message in it -->
 
@@ -76,6 +89,19 @@
 		<input type="hidden" name="marked_msg_id[]" value="{MSG_ID}" />
         <input type="hidden" name="cur_folder_id" value="{CUR_FOLDER_ID}" />
         <input type="hidden" name="p" value="{MSG_ID}" />
+
+		<!-- IF U_POST_REPLY_PM -->
+				<!-- reply button -->
+				<div class="topic-buttons">
+						<a href='{U_POST_REPLY_PM}' rel='nofollow'>
+								<span class="reply_button">
+										<i class="fa fa-reply"></i>
+										&nbsp;&nbsp;Add Reply
+								</span>
+						</a>
+				</div>
+				<!-- end reply button -->
+		<!-- ENDIF -->
 
 
 <!-- INCLUDE ucp_pm_message_footer.html -->
