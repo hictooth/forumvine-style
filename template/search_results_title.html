@@ -19,7 +19,7 @@
       <!-- BEGIN searchresults -->
         <tr class="<!-- IF memberrow.S_ROW_COUNT is even -->row2<!-- ELSE -->row1<!-- ENDIF -->">
           <td class="c_cat-title">
-            <a href="{{ searchresults.U_VIEW_POST }}">{{ searchresults.TOPIC_TITLE }}</a>
+            <a href="<!-- IF searchresults.U_LAST_POST -->{searchresults.U_LAST_POST}<!-- ELSE -->{searchresults.U_VIEW_POST}<!-- ENDIF -->">{{ searchresults.TOPIC_TITLE }}</a>
             <div class="description">
                 <!-- IF searchresults.TOPIC_DESC -->
                     {searchresults.TOPIC_DESC}
