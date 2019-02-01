@@ -3,11 +3,12 @@
 <table class="posts" id="search_results_topics" cellspacing="0">
   <thead>
     <tr>
-      <th colspan="5">Searching: dragons</th>
+      <th colspan="6">Searching: dragons</th>
     </tr>
   </thead>
   <table class="forums" cellspacing="0">
     <tr>
+      <th class="c_cat-mark">&nbsp;</th>
       <th class="c_cat-title">Title</th>
       <th class="c_cat-title">Forum</th>
       <th class="c_cat-replies">Replies</th>
@@ -18,6 +19,25 @@
     <!-- IF .searchresults -->
       <!-- BEGIN searchresults -->
         <tr class="<!-- IF memberrow.S_ROW_COUNT is even -->row2<!-- ELSE -->row1<!-- ENDIF -->">
+          <td class="c_cat-mark">
+		    <!-- IF searchresults.S_HAS_POLL -->
+			  <i class="fa fa-bar-chart-o fa-lg" style="color: #688b6a" title="Poll"></i>
+			<!-- ELSEIF searchresults.S_TOPIC_LOCKED -->
+			  <i class="fa fa-lock fa-2x" style="color: #688b6a" alt="Locked"></i>
+			<!-- ELSEIF searchresults.S_UNREAD_TOPIC -->
+			  <!-- IF searchresults.REPLIES > 25 -->
+			    <i class="fa fa-star fa-lg" style="color: #688b6a" title="Hot Topic"></i>
+			  <!-- ELSE -->
+			    <i class="fa fa-circle fa-lg" style="color: #688b6a" title="Unread Posts"></i>
+			  <!-- ENDIF -->
+			<!-- ELSE -->
+			  <!-- IF searchresults.REPLIES > 25 -->
+			    <i class="fa fa-star-o fa-lg" style="color: #688b6a" title="Hot Topic (No new posts)"></i>
+			  <!-- ELSE -->
+			    <i class="fa fa-circle-o fa-lg" style="color: #688b6a" title="No Unread Posts"></i>
+			  <!-- ENDIF -->
+			<!-- ENDIF -->
+		  </td>
           <td class="c_cat-title">
             <a href="<!-- IF searchresults.U_LAST_POST -->{searchresults.U_LAST_POST}<!-- ELSE -->{searchresults.U_VIEW_POST}<!-- ENDIF -->">{{ searchresults.TOPIC_TITLE }}</a>
             <div class="description">
