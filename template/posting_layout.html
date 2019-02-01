@@ -138,9 +138,7 @@
     <!-- ENDIF -->
 
     <!-- new topic title, description and tags -->
-    <!-- IF TOPIC_TITLE -->
-      <input type='hidden' name='subject' value='{SUBJECT}{DRAFT_SUBJECT}' />
-    <!-- ELSE -->
+    <!-- IF not TOPIC_TITLE -->
       <tr>
         <!-- IF S_PRIVMSGS -->
           <td class="c_desc">Message Subject</td>
@@ -158,6 +156,15 @@
     	<!-- ENDIF -->
   	<!-- ENDIF -->
 
+
+    <!-- IF IS_FIRST_POST -->
+        <tr>
+            <td class="c_desc">Topic Title</td>
+            <td><input type='text' size='40' maxlength='125' name="subject" value='{SUBJECT}{DRAFT_SUBJECT}' tabindex='2' autocomplete="off" /></td>
+        </tr>
+    <!-- ELSE -->
+        <input type='hidden' name='subject' value='{SUBJECT}{DRAFT_SUBJECT}' />
+    <!-- ENDIF -->
 
     <!-- IF S_DESC_TOPIC -->
         <tr>
