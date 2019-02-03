@@ -8,6 +8,22 @@
 
 <form id="postform" method='post' name='posting' class="exclusivebutton" action="{S_POST_ACTION}"{S_FORM_ENCTYPE}>
 
+    <!-- IF ERROR or ERROR_MESSAGE -->
+            <table cellspacing="0" id="error_box">
+                    <thead>
+                            <tr>
+                                    <th>Error:</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                            <tr class="generic">
+                                    <td><!-- IF ERROR_MESSAGE -->{ERROR_MESSAGE}<!-- ELSE -->{ERROR}<!-- ENDIF --></td>
+                            </tr>
+                    </tbody>
+            </table>
+            <br/>
+    <!-- ENDIF -->
+
   <!-- IF S_DRAFT_LOADED -->
       <table cellspacing="0" id="error_box">
           <thead>
@@ -21,6 +37,7 @@
               </tr>
           </tbody>
       </table>
+      <br/>
   <!-- ENDIF -->
 
   <table class="posting" cellspacing="0">
@@ -137,18 +154,6 @@
       <!-- ENDIF -->
     <!-- ENDIF -->
 
-    <!-- new topic title, description and tags -->
-    <!-- IF not TOPIC_TITLE -->
-      <tr>
-        <!-- IF S_PRIVMSGS -->
-          <td class="c_desc">Message Subject</td>
-        <!-- ELSE -->
-          <td class="c_desc">Topic Title</td>
-        <!-- ENDIF -->
-        <td><input type='text' size='40' maxlength='100' name='subject' id='subject' value='{SUBJECT}{DRAFT_SUBJECT}' tabindex='1' autocomplete="off" /></td>
-      </tr>
-    <!-- ENDIF -->
-
     <!-- IF S_POST_ACTION or S_PRIVMSGS or S_EDIT_DRAFT -->
     	<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
     		<!-- DEFINE $CAPTCHA_TAB_INDEX = 3 -->
@@ -156,15 +161,21 @@
     	<!-- ENDIF -->
   	<!-- ENDIF -->
 
-
-    <!-- IF IS_FIRST_POST -->
+    <!-- new topic title, description and tags -->
+    <!-- IF IS_FIRST_POST or S_PRIVMSGS -->
         <tr>
-            <td class="c_desc">Topic Title</td>
-            <td><input type='text' size='40' maxlength='125' name="subject" value='{SUBJECT}{DRAFT_SUBJECT}' tabindex='2' autocomplete="off" /></td>
+            <!-- IF IS_FIRST_POST -->
+                <td class="c_desc">Topic Title</td>
+            <!-- ELSE -->
+                <td class="c_desc">Message Subject</td>
+            <!-- ENDIF -->
+            <td><input type='text' size='40' maxlength='100' name='subject' id='subject' value='{SUBJECT}{DRAFT_SUBJECT}' tabindex='1' autocomplete="off" /></td>
         </tr>
     <!-- ELSE -->
         <input type='hidden' name='subject' value='{SUBJECT}{DRAFT_SUBJECT}' />
     <!-- ENDIF -->
+
+
 
     <!-- IF S_DESC_TOPIC -->
         <tr>
@@ -368,7 +379,8 @@
 				<!-- IF TOPIC_TITLE -->
 					<input type="submit" accesskey="s" tabindex="6" name="post" value="Post Reply" class="btn_default" />
         <!-- ELSEIF S_PRIVMSGS -->
-          <input type="submit" accesskey="s" tabindex="6" name="post" value="Send Message" class="btn_default" />
+          <button name="post" value="submit" type="submit" accesskey="s" tabindex="6" class="btn_default">Send Message</button>
+          <!--<input type="submit" accesskey="s" tabindex="6" name="post" value="Send Message" class="btn_default" />-->
 				<!-- ELSE -->
 					<input type="submit" accesskey="s" tabindex="6" name="post" value="Post Topic" class="btn_default" />
 				<!-- ENDIF -->
