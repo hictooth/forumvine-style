@@ -86,6 +86,27 @@
 
 <!-- ELSE -->
     <!-- INCLUDE forumlist_body.html -->
+
+	<!-- birthdays -->
+	<!-- IF S_DISPLAY_BIRTHDAY_LIST -->
+		<div id="birthdays" class="category">
+			<table class="cat_head" id="birthdays_header">
+				<tr>
+					<td>
+						<h2 class="special">
+							{L_BIRTHDAYS}
+						</h2>
+					</td>
+				</tr>
+			</table>
+			<table class="forums" cellspacing="0" style="display: table;">
+				<tr>
+					<th colspan="2"><!-- IF .birthdays -->Happy Birthday to{L_COLON} <strong><!-- BEGIN birthdays -->{birthdays.USERNAME}<!-- IF birthdays.AGE !== '' --> ({birthdays.AGE})<!-- ENDIF --><!-- IF not birthdays.S_LAST_ROW -->, <!-- ENDIF --><!-- END birthdays --></strong><!-- ELSE -->{L_NO_BIRTHDAYS}<!-- ENDIF --></th>
+				</tr>
+			</table>
+		</div>
+	<!-- ENDIF -->
+
     <!-- INCLUDE forum_stats.html -->
 <!-- ENDIF -->
 
