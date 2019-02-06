@@ -395,6 +395,21 @@
   {S_HIDDEN_FIELDS}
 </form>
 
+<!-- IF not S_PRIVMSGS and not IS_FIRST_POST and LAST_POSTER_NAME -->
+    <br/>
+    <div class="topic">
+        <h2 class="special">Last Post</h2>
+        <table class="topic" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td class="c_desc">{LAST_POSTER_NAME} <small>{LAST_POSTER_TIME}</small></td>
+                    <td>{LAST_POSTER_MESSAGE}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<!-- ENDIF -->
+
 <!-- IF S_PRIVMSGS -->
   <!-- INCLUDE ucp_footer.html -->
 <!-- ELSE -->
