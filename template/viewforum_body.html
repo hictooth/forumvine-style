@@ -73,12 +73,22 @@
 						<!-- ENDIF -->
 					</td>
 					<td class="c_cat-title">
-						<a href="{topicrow.U_NEWEST_POST}" title="Start Date {topicrow.FIRST_POST_TIME}">{topicrow.TOPIC_TITLE}</a>
+						<!-- IF topicrow.U_NEWEST_POST -->
+							<a href="{topicrow.U_NEWEST_POST}" title="Start Date {topicrow.FIRST_POST_TIME}">{topicrow.TOPIC_TITLE}</a>
+						<!-- ELSE IF topicrow.U_VIEW_TOPIC -->
+							<a href="{topicrow.U_VIEW_TOPIC}">{topicrow.TOPIC_TITLE}</a>
+						<!-- ELSE -->
+							{topicrow.TOPIC_TITLE}
+						<!-- ENDIF -->
 						<div class="description">
-							<!-- IF searchresults.TOPIC_DESC -->
-								{searchresults.TOPIC_DESC}
-							<!-- ELSEIF topicrow.TOPIC_DESC -->
-								{topicrow.TOPIC_DESC}
+							<!-- IF not topicrow.U_NEWEST_POST and not topicrow.U_VIEW_TOPIC and not S_REGISTERED_USER -->
+								Please <a href="{U_LOGIN_LOGOUT}">login</a> or <a href="{U_REGISTER}">signup</a> to view this topic
+							<!-- ELSE -->
+								<!-- IF searchresults.TOPIC_DESC -->
+									{searchresults.TOPIC_DESC}
+								<!-- ELSEIF topicrow.TOPIC_DESC -->
+									{topicrow.TOPIC_DESC}
+								<!-- ENDIF -->
 							<!-- ENDIF -->
 						</div>
 					</td>
