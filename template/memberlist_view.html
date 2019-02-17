@@ -89,39 +89,41 @@
 
 
 
-<!-- contact info -->
-<table class="profile" cellspacing="0">
-	<thead>
-		<tr>
-			<th colspan="2">Contact Information</th>
-		</tr>
-	</thead>
-	<tbody>
-		<!-- IF U_EMAIL -->
-		<tr>
-			<td class="c_desc">Email Address:</td>
-			<td><a href="{U_EMAIL}" rel="nofollow">Click Here</a></td>
-		</tr>
-		<!-- ENDIF -->
-
-		<!-- IF U_PM -->
-		<tr>
-			<td class="c_desc">Personal Messenger</td>
-			<td><a href="{U_PM}" rel="nofollow">PM</a></td>
-		</tr>
-		<!-- ENDIF -->
-
-		<!-- BEGIN custom_fields -->
+<!-- IF S_USER_LOGGED_IN and (U_EMAIL or U_PM) -->
+	<!-- contact info -->
+	<table class="profile" cellspacing="0">
+		<thead>
 			<tr>
-			<!-- IF custom_fields.S_PROFILE_CONTACT -->
-				<td class="c_desc">{custom_fields.PROFILE_FIELD_NAME}</td>
-				<td>{custom_fields.PROFILE_FIELD_VALUE}</td>
-			<!-- ENDIF -->
+				<th colspan="2">Contact Information</th>
 			</tr>
-		<!-- END custom_fields -->
-	</tbody>
-</table>
-<!-- end contact info -->
+		</thead>
+		<tbody>
+			<!-- IF U_EMAIL -->
+			<tr>
+				<td class="c_desc">Email Address:</td>
+				<td><a href="{U_EMAIL}" rel="nofollow">Click Here</a></td>
+			</tr>
+			<!-- ENDIF -->
+
+			<!-- IF U_PM -->
+			<tr>
+				<td class="c_desc">Personal Messenger</td>
+				<td><a href="{U_PM}" rel="nofollow">PM</a></td>
+			</tr>
+			<!-- ENDIF -->
+
+			<!-- BEGIN custom_fields -->
+				<tr>
+				<!-- IF custom_fields.S_PROFILE_CONTACT -->
+					<td class="c_desc">{custom_fields.PROFILE_FIELD_NAME}</td>
+					<td>{custom_fields.PROFILE_FIELD_VALUE}</td>
+				<!-- ENDIF -->
+				</tr>
+			<!-- END custom_fields -->
+		</tbody>
+	</table>
+	<!-- end contact info -->
+<!-- ENDIF -->
 
 
 <table class="profile" cellspacing="0">
