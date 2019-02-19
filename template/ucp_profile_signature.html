@@ -4,7 +4,22 @@
 
 <form id="postform" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
 
-		<!-- IF SIGNATURE_PREVIEW != '' -->
+		<!-- IF ERROR -->
+				<table cellspacing="0" id="error_box">
+						<thead>
+								<tr>
+										<th>Error:</th>
+								</tr>
+						</thead>
+						<tbody>
+								<tr class="generic">
+										<td>{ERROR}</td>
+								</tr>
+						</tbody>
+				</table>
+		<!-- ENDIF -->
+
+		<!-- IF not ERROR and SIGNATURE_PREVIEW != '' -->
 				<table cellspacing="0" id="sig_box">
 						<thead>
 								<tr>
