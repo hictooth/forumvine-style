@@ -1305,6 +1305,7 @@ height:1px;
 }
 
 td.c_sig,td.c_nosig {
+max-width: 723px;
 /*height:1%;*/
 vertical-align:top;
 }
