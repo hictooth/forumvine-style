@@ -13,6 +13,23 @@
 <link rel="stylesheet" type="text/css" href="{T_THEME_PATH}/zeta.css?v=1" />
 <!--<link rel="stylesheet" type="text/css" href="http://w11.zetaboards.com/c/56507/205/css.css" />-->
 
+{% if "now"|date("d-m") == "01-04" %}
+	<!-- april fools CSS -->
+		<style>
+			@font-face {
+				font-family: HowToTrainYourDragon;
+				src: url({T_THEME_PATH}/httyd.ttf);
+			}
+
+			:not(.fa) {
+				font-family: HowToTrainYourDragon !important;
+				letter-spacing: 1px;
+				word-spacing: 3px;
+			}
+		</style>
+	<!-- end april fools CSS -->
+{% endif %}
+
 <link rel="shortcut icon" href="{T_THEME_PATH}/favicon.ico?mod=1" type="image/vnd.microsoft.icon" />
 <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css' />
 
@@ -71,7 +88,12 @@
 
 	<!-- grapevine logo -->
 	<div id="logo">
-		<a href='/' title='Home'><img src="{T_THEME_PATH}/images/eyes-header.png" alt="{SITENAME}" /></a>
+		<a href='/' title='Home'>
+			{% if "now"|date("m") == "12" %}
+				<img src="{T_THEME_PATH}/images/snow-header.gif" style="position: absolute;" />
+			{% endif %}
+			<img src="{T_THEME_PATH}/images/eyes-header.png" alt="{SITENAME}" />
+		</a>
 	</div>
 	<!-- end grapevine logo -->
 
