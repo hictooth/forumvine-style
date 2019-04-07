@@ -412,6 +412,11 @@ tr.hidden td.c_post {
 background:#D8DCEB;
 }
 
+td.c_post .post-notice {
+background-color: #ECD5D8;
+padding: 5px;
+}
+
 .bday {
 background:url(./images/ifrm/s_minibday.png) no-repeat;
 color:#425384;
