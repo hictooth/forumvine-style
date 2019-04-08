@@ -126,6 +126,26 @@
 	</tr>
 	<!-- end topic header -->
 
+  <!-- start egg hunt -->
+  <!-- IF EGG_FILENAME and 0 -->
+    <tr>
+      <!-- IF FOUND_EGG -->
+        <td colspan="2" style="text-align: center;font-size: 16px;background-color: #a7fc8a;">
+          You've collected this egg! Try and find the rest of them now!
+          <img src="{T_THEME_PATH}/images/dragoneggs/{EGG_FILENAME}" style="max-width: 100px;max-height: 100px;">
+        </td>
+      <!-- ELSE -->
+        <td colspan="2" style="text-align: center;font-size: 16px;background-color: pink;">
+          You've found an egg! Click on it to collect it for the <a href="">egg hunt</a> competition!
+          <a href="/foundegg.php?topic={TOPIC_ID}">
+            <img src="{T_THEME_PATH}/images/dragoneggs/{EGG_FILENAME}" style="max-width: 100px;max-height: 100px;">
+          </a>
+        </td>
+      <!-- ENDIF -->
+    </tr>
+  <!-- ENDIF -->
+  <!-- end egg hunt -->
+
 	<!-- BEGIN postrow -->
 
 	<tr id="p{postrow.POST_ID}">
