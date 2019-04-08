@@ -178,7 +178,32 @@
 				<dd class="spacer"></dd>
 			</dl>
 
-
+      <div class="user_badges">
+        {% if postrow.POSTER_BADGES_BINARY b-and 1 %}
+          <img src="{T_THEME_PATH}/images/dragonclasses/01stoker.png" alt="" />
+        {% endif %}
+        {% if postrow.POSTER_BADGES_BINARY b-and 2 %}
+          <img src="{T_THEME_PATH}/images/dragonclasses/01stoker.png" alt="" />
+        {% endif %}
+        {% if postrow.POSTER_BADGES_BINARY b-and 4 %}
+          <img src="{T_THEME_PATH}/images/dragonclasses/02boulder.png" alt="" />
+        {% endif %}
+        {% if postrow.POSTER_BADGES_BINARY b-and 8 %}
+          <img src="{T_THEME_PATH}/images/dragonclasses/03fear.png" alt="" />
+        {% endif %}
+        {% if postrow.POSTER_BADGES_BINARY b-and 16 %}
+          <img src="{T_THEME_PATH}/images/dragonclasses/04sharp.png" alt="" />
+        {% endif %}
+        {% if postrow.POSTER_BADGES_BINARY b-and 32 %}
+          <img src="{T_THEME_PATH}/images/dragonclasses/05tidal.png" alt="" />
+        {% endif %}
+        {% if postrow.POSTER_BADGES_BINARY b-and 64 %}
+          <img src="{T_THEME_PATH}/images/dragonclasses/06mystery.png" alt="" />
+        {% endif %}
+        {% if postrow.POSTER_BADGES_BINARY b-and 128 %}
+          <img src="{T_THEME_PATH}/images/dragonclasses/07strike.png" alt="" />
+        {% endif %}
+      </div>
 
 			<img src="{T_THEME_PATH}/images/ifrm/blank.gif" height="1" class="c_user" alt="" />
 		</td>

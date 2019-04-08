@@ -2132,3 +2132,11 @@ margin-top: 7px;
   padding-right: 0;
   width: 800px;
 }
+
+.user_badges {
+  margin-bottom: 5px;
+}
+.user_badges img {
+  max-width: 40px;
+  max-height: 40px;
+}
