@@ -89,7 +89,7 @@
 
 
 
-<!-- IF S_USER_LOGGED_IN and (U_EMAIL or U_PM) -->
+{% if (S_USER_LOGGED_IN and (U_EMAIL or U_PM)) or (custom_fields|filter(i => i.S_PROFILE_CONTACT and not i.HIDDEN_FIELD) is not empty) %}
 	<!-- contact info -->
 	<table class="profile" cellspacing="0">
 		<thead>
@@ -98,32 +98,34 @@
 			</tr>
 		</thead>
 		<tbody>
-			<!-- IF U_EMAIL -->
-			<tr>
-				<td class="c_desc">Email Address:</td>
-				<td><a href="{U_EMAIL}" rel="nofollow">Click Here</a></td>
-			</tr>
-			<!-- ENDIF -->
+			<!-- IF S_USER_LOGGED_IN and (U_EMAIL or U_PM) -->
+				<!-- IF U_EMAIL -->
+				<tr>
+					<td class="c_desc">Email Address:</td>
+					<td><a href="{U_EMAIL}" rel="nofollow">Click Here</a></td>
+				</tr>
+				<!-- ENDIF -->
 
-			<!-- IF U_PM -->
-			<tr>
-				<td class="c_desc">Personal Messenger</td>
-				<td><a href="{U_PM}" rel="nofollow">PM</a></td>
-			</tr>
+				<!-- IF U_PM -->
+				<tr>
+					<td class="c_desc">Personal Messenger</td>
+					<td><a href="{U_PM}" rel="nofollow">PM</a></td>
+				</tr>
+				<!-- ENDIF -->
 			<!-- ENDIF -->
 
 			<!-- BEGIN custom_fields -->
 				<tr>
 				<!-- IF custom_fields.S_PROFILE_CONTACT -->
 					<td class="c_desc">{custom_fields.PROFILE_FIELD_NAME}</td>
-					<td>{custom_fields.PROFILE_FIELD_VALUE}</td>
+					<td><a href="{custom_fields.PROFILE_FIELD_CONTACT}">{custom_fields.PROFILE_FIELD_DESC}</a></td>
 				<!-- ENDIF -->
 				</tr>
 			<!-- END custom_fields -->
 		</tbody>
 	</table>
 	<!-- end contact info -->
-<!-- ENDIF -->
+{% endif %}
 
 
 <table class="profile" cellspacing="0">
